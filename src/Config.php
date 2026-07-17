@@ -59,6 +59,7 @@ class Config
      * @example [['example', __NAMESPACE__.\ExampleController::example_shortcode']]
      */
     public $shortcodes = [
+        ['hello_world', __NAMESPACE__ . '\Controllers\ExampleReactController::helloWorld'],
         // Add your custom shortcodes here
     ];
 
@@ -115,6 +116,14 @@ class Config
             'slug' => 'antonella-example',
         ]
 
+        ,
+        [
+            'path' => ['page'],
+            'name' => 'Hello World with React',
+            'function' => __NAMESPACE__ . "\Controllers\ExampleReactController::helloWorldPage",
+            'icon' => 'antonella-icon.png',
+            'slug' => 'antonella-react-hello',
+        ]
         // Add your custom admin pages here
     ];
 
