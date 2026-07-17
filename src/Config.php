@@ -28,7 +28,7 @@ class Config
      * @example ['post_data'=>'JEELSHHA::function']
      */
     public $post = [
-        'submit_antonella_config' => __NAMESPACE__ . '\Controllers\ExampleController::process_form',
+        'submit_http_headers_advanced' => __NAMESPACE__ . '\Controllers\SettingsController::save',
     ];
     /**
      * GET data process
@@ -59,7 +59,6 @@ class Config
      * @example [['example', __NAMESPACE__.\ExampleController::example_shortcode']]
      */
     public $shortcodes = [
-        ['hello_world', __NAMESPACE__ . '\Controllers\ExampleReactController::helloWorld'],
         // Add your custom shortcodes here
     ];
 
@@ -109,22 +108,11 @@ class Config
      */
     public $plugin_menu = [
         [
-            'path' => ['page'],
-            'name' => 'Hello World',
-            'function' => __NAMESPACE__ . "\Controllers\ExampleController::adminPage",
-            'icon' => 'antonella-icon.png',
-            'slug' => 'antonella-example',
+            'path' => ['option'],
+            'name' => 'HTTP Headers Advanced',
+            'function' => __NAMESPACE__ . "\Controllers\SettingsController::settingsPage",
+            'slug' => 'http-headers-advanced',
         ]
-
-        ,
-        [
-            'path' => ['page'],
-            'name' => 'Hello World with React',
-            'function' => __NAMESPACE__ . "\Controllers\ExampleReactController::helloWorldPage",
-            'icon' => 'antonella-icon.png',
-            'slug' => 'antonella-react-hello',
-        ]
-        // Add your custom admin pages here
     ];
 
     /**

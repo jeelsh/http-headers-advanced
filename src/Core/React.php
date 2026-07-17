@@ -147,7 +147,7 @@ class React
             self::enqueueProductionScripts();
         }
 
-        add_filter('script_loader_tag', [__CLASS__, 'addModuleType'], 10, 2);
+        add_filter('script_loader_tag', [__CLASS__, 'addModuleType'], 999, 2);
 
         self::$assetsEnqueued = true;
     }
@@ -164,7 +164,7 @@ class React
             return;
         }
 
-        $configPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'React.php';
+        $configPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'React.php';
         
         if (file_exists($configPath)) {
             self::$config = require $configPath;
@@ -185,8 +185,6 @@ class React
             'load_in_admin' => true,
             'load_in_frontend' => true,
             'version' => null,
-            'style_isolation' => false,
-            'style_isolation_mode' => 'reset',
         ];
     }
 
@@ -239,6 +237,14 @@ class React
             window.\$RefreshReg$ = () => {};
             window.\$RefreshSig$ = () => (type) => type;
         ";
+
+        add_filter('wp_inline_script_attributes', function ($attributes, $handle) use ($viteClientHandle) {
+            if ($handle === $viteClientHandle) {
+                $attributes['type'] = 'module';
+            }
+
+            return $attributes;
+        }, 10, 2);
         
         wp_add_inline_script(
             $viteClientHandle,
@@ -249,10 +255,16 @@ class React
         wp_enqueue_script(
             $appHandle,
             $viteServer . '/' . $entryPoint,
-            [],
+            ['wp-i18n'],
             null,
             true
         );
+
+        wp_set_script_translations($appHandle, 'jeelshha', dirname(dirname(__DIR__)) . '/languages');
+
+        if (function_exists('wp_script_add_data')) {
+            wp_script_add_data($appHandle, 'type', 'module');
+        }
         
         self::localizeScriptData($appHandle);
     }
@@ -305,11 +317,13 @@ class React
             wp_enqueue_script(
                 'antonella-react-app-' . $appKey,
                 $baseUrl . $manifest[$entryPoint]['file'],
-                [],
+                ['wp-i18n'],
                 $version,
                 true
             );
             
+            wp_set_script_translations('antonella-react-app-' . $appKey, 'jeelshha', dirname(dirname(__DIR__)) . '/languages');
+
             self::localizeScriptData('antonella-react-app-' . $appKey);
         }
     }
@@ -522,25 +536,32 @@ class React
 
     public static function addModuleType($tag, $handle)
     {
+        // Debug: Ensure we are targeting the right scripts
         if (strpos($handle, 'antonella-react') === false) {
             return $tag;
         }
 
-        $attributes = ' type="module"';
-        $appHandle = 'antonella-react-app-' . self::getAppKey();
-
-        if ($handle === $appHandle) {
-            $attributes .= ' data-antonella-react-app="' . esc_attr(self::getAppKey()) . '"';
+        // If it already has it, don't add it again
+        if (strpos($tag, 'type="module"') !== false || strpos($tag, "type='module'") !== false) {
+            return $tag;
         }
 
-        return preg_replace('/<script\b/', '<script' . $attributes, $tag, 1);
+        // More aggressive replacement to bypass any WP filtering issues
+        $tag = str_replace('<script ', '<script type="module" ', $tag);
+        
+        // Ensure even if there are weird spaces it gets caught
+        if (strpos($tag, 'type="module"') === false) {
+             $tag = preg_replace('/<script/i', '<script type="module"', $tag, 1);
+        }
+
+        return $tag;
     }
 
     protected static function localizeScriptData($handle)
     {
         $currentUser = wp_get_current_user();
         $appKey = self::getAppKey();
-        $objectName = 'antonellaReactData_' . $appKey;
+        $objectName = 'antonella_react_' . $appKey;
         
         wp_localize_script(
             $handle,
@@ -559,6 +580,14 @@ class React
                 'pageData' => self::$pageData,
             ]
         );
+
+        // Encolar scripts globales personalizados desde la configuración
+        $globalScripts = self::getConfig('global_localize_script', []);
+        if (!empty($globalScripts) && is_array($globalScripts)) {
+            foreach ($globalScripts as $objectName => $data) {
+                wp_localize_script($handle, $objectName, $data);
+            }
+        }
     }
 
     protected static function getAppKey(): string
