@@ -1,0 +1,172 @@
+# =============================================================================
+# Antonella Framework for WordPress - Docker Compose Configuration
+#
+# Entorno de desarrollo completo con:
+# - MySQL 8.0 con healthchecks
+# - WordPress con framework preconfigurado
+# - phpMyAdmin para gestión de BD
+# - WP-CLI para automatización
+#
+# Requisitos:
+# - Docker Desktop 4.53.0+ (compatibilidad ARM64/Windows)
+# - Docker Compose v2+
+#
+# Uso: docker compose up -d
+# =============================================================================
+
+services:
+  # =============================================================================
+  # Base de datos MySQL 8.0
+  # Configurada con healthchecks para dependencias seguras
+  # =============================================================================
+  mysql:
+    container_name: http-headers-mysql
+    image: mysql:8.0
+    restart: unless-stopped
+    ports:
+      - "${MYSQL_PORT:-3306}:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - mysql_data:/var/lib/mysql
+    command: --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "wordpress", "-pwordpress" ]
+      interval: 5s
+      timeout: 10s
+      retries: 20
+      start_period: 30s
+
+  # =============================================================================
+  # phpMyAdmin - Gestión visual de base de datos
+  # Acceso: http://localhost:9000 (cambiar puerto si está ocupado)
+  # =============================================================================
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin:latest
+    container_name: http-headers-phpmyadmin
+    restart: unless-stopped
+    environment:
+      PMA_HOST: mysql
+      PMA_USER: wordpress
+      PMA_PASSWORD: wordpress
+      UPLOAD_LIMIT: 1G
+    depends_on:
+      mysql:
+        condition: service_healthy
+    ports:
+      - "${PHPMYADMIN_PORT:-9000}:80"
+
+  # =============================================================================
+  # WordPress con Antonella Framework
+  # Configuración automática de desarrollo con inicialización completa
+  # Acceso: http://localhost:8080
+  # Admin: http://localhost:8080/wp-admin (test/test)
+  # =============================================================================
+  wordpress:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.wordpress
+    container_name: http-headers-wordpress
+    hostname: http-headers.test
+    restart: unless-stopped
+    ports:
+      - "${WORDPRESS_PORT:-8080}:80"
+    depends_on:
+      mysql:
+        condition: service_healthy
+    volumes:
+      # Montar el framework como plugin
+      - ./:/var/www/html/wp-content/plugins/antonella-framework
+      # Persistir uploads y contenido
+      - wordpress_data:/var/www/html
+      # Logs de WordPress
+      - ./storage/logs:/var/www/html/wp-content/debug.log
+    environment:
+      # Configuración de base de datos
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_TABLE_PREFIX: anto_
+      WORDPRESS_PORT: ${WORDPRESS_PORT:-8080}
+      PHPMYADMIN_PORT: ${PHPMYADMIN_PORT:-9000}
+
+      # Configuración adicional de WordPress
+      WORDPRESS_CONFIG_EXTRA: |
+        // Configuración del sitio
+        define('WP_HOME', 'http://localhost:${WORDPRESS_PORT:-8080}');
+        define('WP_SITEURL', 'http://localhost:${WORDPRESS_PORT:-8080}');
+        define('DOMAIN_CURRENT_SITE', 'antonella.test');
+
+        // Configuración de desarrollo
+        define('WP_DEBUG', true);
+        define('WP_DEBUG_LOG', true);
+        define('WP_DEBUG_DISPLAY', false);
+        define('SCRIPT_DEBUG', true);
+        define('SAVEQUERIES', true);
+
+        // Configuración de memoria y tiempo
+        define('WP_MEMORY_LIMIT', '512M');
+        ini_set('max_execution_time', 300);
+
+        // Configuración de archivos
+        define('AUTOMATIC_UPDATER_DISABLED', true);
+        define('WP_AUTO_UPDATE_CORE', false);
+        define('DISALLOW_FILE_EDIT', false);
+        define('DISALLOW_FILE_MODS', false);
+
+        // Configuración de cache (deshabilitado en desarrollo)
+        define('WP_CACHE', false);
+
+        // Configuración de revisiones
+        define('WP_POST_REVISIONS', 5);
+
+        // Configuración de papelera
+        define('EMPTY_TRASH_DAYS', 7);
+
+  # =============================================================================
+  # WP-CLI Container - Automatización y comandos WordPress
+  # Uso: docker compose exec wpcli wp <comando>
+  # =============================================================================
+  wpcli:
+    build:
+      context: .
+      dockerfile: docker/Dockerfile.wordpress
+    container_name: http-headers-wpcli
+    volumes:
+      - ./:/var/www/html/wp-content/plugins/antonella-framework
+      - wordpress_data:/var/www/html
+    depends_on:
+      wordpress:
+        condition: service_started
+    environment:
+      WORDPRESS_DB_HOST: mysql:3306
+      WORDPRESS_DB_USER: wordpress
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DB_NAME: wordpress
+      WORDPRESS_PORT: ${WORDPRESS_PORT:-8080}
+      WP_CLI_MODE: "true"
+    command: tail -f /dev/null
+
+# =============================================================================
+# Volúmenes persistentes
+# Mantienen datos entre reinicios de contenedores
+# =============================================================================
+volumes:
+  mysql_data:
+    driver: local
+    # Datos de MySQL (base de datos, configuraciones)
+  wordpress_data:
+    driver: local
+    # Instalación completa de WordPress (core, themes, uploads)
+
+    # =============================================================================
+    # Red personalizada
+    # Permite comunicación entre servicios con nombres de host
+    # =============================================================================
+networks:
+  default:
+    name: http-headers-network

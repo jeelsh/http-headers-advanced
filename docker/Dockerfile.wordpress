@@ -1,0 +1,48 @@
+# =============================================================================
+# Antonella Framework - WordPress Development Container
+# 
+# Builds a WordPress environment with:
+# - WP-CLI for automation
+# - Custom initialization scripts
+# - Development tools and dependencies
+#
+# Compatible with: linux/amd64, linux/arm64, windows
+# =============================================================================
+
+FROM wordpress:latest
+
+# =============================================================================
+# Install system dependencies and development tools
+# =============================================================================
+RUN apt-get update && apt-get install -y \
+    curl \
+    less \
+    default-mysql-client \
+    && rm -rf /var/lib/apt/lists/*
+
+# =============================================================================
+# Install WP-CLI for WordPress automation
+# =============================================================================
+RUN curl -O https://raw.githubusercontent.com/wp-cli/builds/gh-pages/phar/wp-cli.phar \
+    && chmod +x wp-cli.phar \
+    && mv wp-cli.phar /usr/local/bin/wp
+
+# =============================================================================
+# Setup custom scripts directory and initialization
+# =============================================================================
+RUN mkdir -p /docker-scripts
+
+# Copiar script de inicialización
+COPY docker/init-wordpress.sh /docker-scripts/
+RUN chmod +x /docker-scripts/init-wordpress.sh
+
+# Configurar entrypoint personalizado
+COPY docker/entrypoint.sh /docker-scripts/
+RUN chmod +x /docker-scripts/entrypoint.sh
+
+# =============================================================================
+# Configure container startup
+# =============================================================================
+
+ENTRYPOINT ["/docker-scripts/entrypoint.sh"]
+CMD ["apache2-foreground"]

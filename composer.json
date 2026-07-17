@@ -1,0 +1,50 @@
+{
+    "name":"jeelsh/http-headers-advanced",
+    "version":"1.0.0",
+    "keywords": ["framework", "wordpress", "plugins"],
+    "prefer-stable": true,
+    "minimum-stability": "dev",
+    "description":"Advanced HTTP headers management for WordPress",
+    "type":"project",
+    "authors": [
+        {
+            "name": "Jeelsh",
+            "email": "jeelsh@protonmail.com",
+            "homepage": "https://github.com/jeelsh",
+            "role": "Developer"
+        }
+    ],
+      "support": {
+        "email": "jeelsh@protonmail.com",
+        "docs" : "https://github.com/jeelsh/http-headers-advanced"
+    },
+    "repositories":[
+        {
+            "type":"composer",
+            "url":"https://wpackagist.org"
+        }
+    ],
+    "license": "MIT",
+    "require":{
+        "php": ">=8.0.0"
+    },
+    "require-dev":{
+    },
+    "autoload": {
+        "psr-4": {"JEELSHHA\\": "src/"},
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "extra": {
+        "installer-paths": {
+            "vendor/{$name}/": ["type:wordpress-plugin","wordpress-muplugin"]
+        }
+    },
+    "scripts":{
+        "post-create-project-cmd": [
+            "php antonella namespace",
+            "php antonella updateproject"
+        ]
+    }
+}
