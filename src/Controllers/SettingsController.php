@@ -32,13 +32,33 @@ class SettingsController
             \wp_die(\esc_html(\__('You do not have sufficient permissions to access this page.', 'http-headers-advanced')));
         }
 
+        $assetBaseUrl = self::assetBaseUrl();
+
         $pageData = [
             'title' => \__('HTTP Headers Advanced', 'http-headers-advanced'),
             'message' => \__('Manage advanced HTTP headers for your WordPress site.', 'http-headers-advanced'),
             'enabled' => (bool) \get_option('http_headers_advanced_enabled', 0),
             'customHeader' => \get_option('http_headers_advanced_custom_header', ''),
+            'assetBaseUrl' => $assetBaseUrl,
         ];
 
-        echo React::render('Settings', $pageData);
+        echo React::render('AdminPanel', $pageData);
+    }
+
+    /**
+     * Resolve the correct base URL for public assets depending on environment.
+     */
+    protected static function assetBaseUrl()
+    {
+        $appEnv = React::getConfig('app_env', 'production');
+
+        if ($appEnv === 'develop') {
+            return \rtrim(React::getConfig('vite_server', 'http://localhost:3000'), '/');
+        }
+
+        $pluginUrl = \plugin_dir_url(\dirname(\dirname(__DIR__)));
+        $buildPath = React::getConfig('build_path', 'assets/dist');
+
+        return \rtrim($pluginUrl . $buildPath, '/');
     }
 }

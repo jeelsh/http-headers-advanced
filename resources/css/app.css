@@ -121,10 +121,24 @@
   * {
     @apply border-border outline-ring/50;
     }
-  body {
-    @apply bg-background text-foreground;
-    }
   html {
     @apply font-sans;
     }
+  .antonella-react-root,
+  [data-antonella-react] {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* WordPress Admin Panel Overrides */
+#wpcontent {
+    padding-left: 0 !important;
+}
+
+#wpbody-content {
+    padding: 0 !important;
+}
+
+#wpfooter {
+    display: none !important;
 }

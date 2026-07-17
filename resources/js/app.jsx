@@ -1,5 +1,6 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import '../css/app.css';
 
 // Auto-register all components in /Pages
 const pageModules = import.meta.glob('./Pages/**/*.jsx', { eager: true });
