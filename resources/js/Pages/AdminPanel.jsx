@@ -4,13 +4,16 @@ import Dashboard from "./Dashboard";
 import Settings from "./Settings";
 import Diagnostics from "./Diagnostics";
 import Tools from "./Tools";
+import useHashTab from "@/hooks/useHashTab";
+
+const validTabs = ["dashboard", "settings", "diagnostics", "tools"];
 
 export default function AdminPanel({
   title,
   message,
   assetBaseUrl,
 }) {
-  const [activeTab, setActiveTab] = useState("dashboard");
+  const { tab: activeTab, setTab: setActiveTab } = useHashTab(validTabs, "dashboard");
   const [isDark, setIsDark] = useState(() => {
     if (typeof window === "undefined") {
       return false;

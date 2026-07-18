@@ -9,6 +9,7 @@ import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
 import useRest from '@/hooks/useRest';
+import useHashTab from '@/hooks/useHashTab';
 import { Save, Loader2, CheckCircle2, AlertCircle, Shield, Globe, Lock } from 'lucide-react';
 
 const DEFAULTS = {
@@ -44,9 +45,12 @@ const DEFAULTS = {
   csp_upgrade_insecure: false,
 };
 
+const validSubTabs = ['hsts', 'headers', 'csp'];
+
 export default function Settings({ assetBaseUrl, isDark }) {
   const [form, setForm] = useState(DEFAULTS);
   const [status, setStatus] = useState(null); // 'saved' | 'error'
+  const { tab: subTab, setTab: handleSubTabChange } = useHashTab(validSubTabs, 'hsts', 1, 'settings');
 
   const { execute: loadSettings, loading: loadingGet } = useRest('/settings', { method: 'GET' });
   const { execute: saveSettings, loading: loadingSave } = useRest('/settings', { method: 'POST' });
@@ -81,7 +85,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
 
   return (
     <div className="space-y-6 max-w-4xl">
-      <Tabs defaultValue="hsts">
+      <Tabs value={subTab} onValueChange={handleSubTabChange}>
         <TabsList className="w-full">
           <TabsTrigger value="hsts" className="gap-1.5">
             <Lock className="h-4 w-4" /> HSTS
