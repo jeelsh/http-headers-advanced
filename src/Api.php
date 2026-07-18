@@ -3,6 +3,7 @@
 namespace JEELSHHA;
 
 use JEELSHHA\Config;
+use JEELSHHA\Services\RestSecurity;
 
 /**
  * WordPress REST API integration for Antonella Framework
@@ -41,7 +42,7 @@ class Api
                     [
                         'methods' => $endpoint[1],
                         'callback' => $endpoint[2],
-                        'permission_callback' => '__return_true', // Override in your callbacks
+                        'permission_callback' => [RestSecurity::class, 'adminPermissionCheck'],
                     ]
                 );
             }

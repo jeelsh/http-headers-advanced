@@ -3,6 +3,7 @@
 namespace JEELSHHA\Controllers;
 
 use JEELSHHA\Models\Diagnostic;
+use JEELSHHA\Services\RestSecurity;
 
 class DiagnosticController
 {
@@ -19,11 +20,11 @@ class DiagnosticController
     }
 
     /**
-     * Permission callback: only admins.
+     * Permission callback: admins with a valid REST nonce.
      */
     public static function permissionCheck(\WP_REST_Request $request)
     {
-        return \current_user_can('manage_options');
+        return RestSecurity::adminPermissionCheck($request);
     }
 
     /**

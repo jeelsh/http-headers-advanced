@@ -6,6 +6,7 @@ use JEELSHHA\Core\React;
 use JEELSHHA\Models\Headers;
 use JEELSHHA\Services\HeaderDispatcher;
 use JEELSHHA\Services\HeaderValidator;
+use JEELSHHA\Services\RestSecurity;
 
 class SettingsController
 {
@@ -46,11 +47,11 @@ class SettingsController
     }
 
     /**
-     * Permission callback: only admins.
+     * Permission callback: admins with a valid REST nonce.
      */
     public static function permissionCheck(\WP_REST_Request $request)
     {
-        return \current_user_can('manage_options');
+        return RestSecurity::adminPermissionCheck($request);
     }
 
     /**
