@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import AdminLayout from "@/components/layout/AdminLayout";
 import Dashboard from "./Dashboard";
 import Settings from "./Settings";
+import Diagnostics from "./Diagnostics";
 
 export default function AdminPanel({
   title,
@@ -48,6 +49,9 @@ export default function AdminPanel({
           assetBaseUrl={assetBaseUrl}
           isDark={isDark}
         />
+      )}
+      {activeTab === "diagnostics" && (
+        <Diagnostics />
       )}
     </AdminLayout>
   );

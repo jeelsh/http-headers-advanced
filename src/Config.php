@@ -53,6 +53,7 @@ class Config
      */
     public $add_action = [
         ['rest_api_init', __NAMESPACE__ . '\Controllers\SettingsController::registerRoutes', 10],
+        ['rest_api_init', __NAMESPACE__ . '\Controllers\DiagnosticController::registerRoutes', 10],
     ];
     /**
      * Custom shortcodes

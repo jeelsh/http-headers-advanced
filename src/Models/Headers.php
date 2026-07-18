@@ -162,6 +162,95 @@ class Headers
     }
 
     /**
+     * Genera las cabeceras HTTP resultantes según la configuración actual.
+     *
+     * @return array<string, string>  ['Header-Name' => 'value']
+     */
+    public function buildHeaders(): array
+    {
+        $result = [];
+
+        // HSTS
+        if ($this->get('hsts_enabled')) {
+            $value = 'max-age=' . $this->get('hsts_max_age');
+            if ($this->get('hsts_include_subdomains')) {
+                $value .= '; includeSubDomains';
+            }
+            if ($this->get('hsts_preload')) {
+                $value .= '; preload';
+            }
+            $result['Strict-Transport-Security'] = $value;
+        }
+
+        // X-Content-Type-Options
+        if ($this->get('xcto_nosniff')) {
+            $result['X-Content-Type-Options'] = 'nosniff';
+        }
+
+        // Referrer-Policy
+        if ($this->get('referrer_policy_enabled')) {
+            $result['Referrer-Policy'] = $this->get('referrer_policy_value');
+        }
+
+        // X-Frame-Options
+        if ($this->get('xfo_enabled')) {
+            $result['X-Frame-Options'] = $this->get('xfo_value');
+        }
+
+        // Permissions-Policy
+        if ($this->get('permissions_policy_enabled')) {
+            $result['Permissions-Policy'] = $this->get('permissions_policy_value');
+        }
+
+        // X-Permitted-Cross-Domain-Policies
+        if ($this->get('xpcdp_enabled')) {
+            $result['X-Permitted-Cross-Domain-Policies'] = $this->get('xpcdp_value');
+        }
+
+        // Content-Security-Policy
+        if ($this->get('csp_enabled')) {
+            $directives = [];
+
+            $cspKeys = [
+                'csp_default_src'    => 'default-src',
+                'csp_script_src'     => 'script-src',
+                'csp_style_src'      => 'style-src',
+                'csp_img_src'        => 'img-src',
+                'csp_connect_src'    => 'connect-src',
+                'csp_font_src'       => 'font-src',
+                'csp_object_src'     => 'object-src',
+                'csp_base_uri'       => 'base-uri',
+                'csp_frame_ancestors' => 'frame-ancestors',
+                'csp_form_action'    => 'form-action',
+            ];
+
+            foreach ($cspKeys as $key => $directive) {
+                $val = \trim((string) $this->get($key));
+                if ($val !== '') {
+                    $directives[] = $directive . ' ' . $val;
+                }
+            }
+
+            $reportUri = \trim((string) $this->get('csp_report_uri'));
+            if ($reportUri !== '') {
+                $directives[] = 'report-uri ' . $reportUri;
+            }
+
+            if ($this->get('csp_upgrade_insecure')) {
+                $directives[] = 'upgrade-insecure-requests';
+            }
+
+            $headerName = $this->get('csp_report_only')
+                ? 'Content-Security-Policy-Report-Only'
+                : 'Content-Security-Policy';
+
+            $result[$headerName] = \implode('; ', $directives);
+        }
+
+        return $result;
+    }
+
+    /**
      * Devuelve el esquema con los valores por defecto.
      */
     public static function schema(): array
