@@ -5,6 +5,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import useRest from '@/hooks/useRest';
 import { Download, Upload, RotateCcw, CheckCircle2, XCircle, Loader2, FileUp } from 'lucide-react';
+import { __, sprintf } from '@/i18n';
 
 function ValidationBadge({ valid, message }) {
   return (
@@ -57,20 +58,20 @@ export default function Tools() {
       const parsed = JSON.parse(text);
 
       if (!parsed.plugin || parsed.plugin !== 'http-headers-advanced') {
-        setValidation({ valid: false, message: 'Campo "plugin" inválido o ausente. Se esperaba "http-headers-advanced".' });
+        setValidation({ valid: false, message: __('Campo "plugin" inválido o ausente. Se esperaba "http-headers-advanced".', 'http-headers-advanced') });
         return;
       }
 
       if (!parsed.settings || typeof parsed.settings !== 'object') {
-        setValidation({ valid: false, message: 'Campo "settings" ausente o inválido.' });
+        setValidation({ valid: false, message: __('Campo "settings" ausente o inválido.', 'http-headers-advanced') });
         return;
       }
 
       const keyCount = Object.keys(parsed.settings).length;
       const source = parsed.site_url ? ` (de ${parsed.site_url})` : '';
-      setValidation({ valid: true, message: `JSON válido: ${keyCount} configuraciones encontradas${source}.`, data: parsed });
+      setValidation({ valid: true, message: sprintf(__('JSON válido: %1$d configuraciones encontradas%2$s.', 'http-headers-advanced'), keyCount, source), data: parsed });
     } catch {
-      setValidation({ valid: false, message: 'JSON inválido. Revisa el formato.' });
+      setValidation({ valid: false, message: __('JSON inválido. Revisa el formato.', 'http-headers-advanced') });
     }
   };
 
@@ -102,11 +103,11 @@ export default function Tools() {
 
     const result = await doImport(validation.data);
     if (result) {
-      setImportStatus({ success: true, message: 'Configuración importada correctamente.' });
+      setImportStatus({ success: true, message: __('Configuración importada correctamente.', 'http-headers-advanced') });
       setImportText('');
       setValidation(null);
     } else {
-      setImportStatus({ success: false, message: 'Error al importar la configuración.' });
+      setImportStatus({ success: false, message: __('Error al importar la configuración.', 'http-headers-advanced') });
     }
 
     setTimeout(() => setImportStatus(null), 4000);
@@ -117,9 +118,9 @@ export default function Tools() {
     setResetOpen(false);
     const result = await doReset({});
     if (result) {
-      setImportStatus({ success: true, message: 'Configuración restablecida a los valores por defecto.' });
+      setImportStatus({ success: true, message: __('Configuración restablecida a los valores por defecto.', 'http-headers-advanced') });
     } else {
-      setImportStatus({ success: false, message: 'Error al restablecer la configuración.' });
+      setImportStatus({ success: false, message: __('Error al restablecer la configuración.', 'http-headers-advanced') });
     }
     setTimeout(() => setImportStatus(null), 4000);
   };
@@ -136,16 +137,16 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Download className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Export Settings</CardTitle>
+            <CardTitle>{__('Export Settings', 'http-headers-advanced')}</CardTitle>
           </div>
           <CardDescription>
-            Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio.
+            {__('Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio.', 'http-headers-advanced')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Button onClick={handleExport} disabled={exporting}>
             {exporting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Download className="h-4 w-4 mr-2" />}
-            Download Export File
+            {__('Download Export File', 'http-headers-advanced')}
           </Button>
         </CardContent>
       </Card>
@@ -155,10 +156,10 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Upload className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Import Settings</CardTitle>
+            <CardTitle>{__('Import Settings', 'http-headers-advanced')}</CardTitle>
           </div>
           <CardDescription>
-            Importa una configuración desde un archivo JSON exportado o pega el contenido directamente.
+            {__('Importa una configuración desde un archivo JSON exportado o pega el contenido directamente.', 'http-headers-advanced')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -175,12 +176,12 @@ export default function Tools() {
               onClick={() => fileInputRef.current?.click()}
             >
               <FileUp className="h-4 w-4 mr-2" />
-              Seleccionar archivo JSON
+              {__('Seleccionar archivo JSON', 'http-headers-advanced')}
             </Button>
           </div>
 
           <Textarea
-            placeholder='O pega aquí el contenido del archivo JSON...'
+            placeholder={__('O pega aquí el contenido del archivo JSON...', 'http-headers-advanced')}
             value={importText}
             onChange={handleTextChange}
             className="font-mono text-xs min-h-32"
@@ -195,7 +196,7 @@ export default function Tools() {
             disabled={!validation?.valid || importing}
           >
             {importing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Upload className="h-4 w-4 mr-2" />}
-            Importar configuración
+            {__('Importar configuración', 'http-headers-advanced')}
           </Button>
         </CardContent>
       </Card>
@@ -205,10 +206,10 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <RotateCcw className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Reset Configuration</CardTitle>
+            <CardTitle>{__('Reset Configuration', 'http-headers-advanced')}</CardTitle>
           </div>
           <CardDescription>
-            Restaura toda la configuración a los valores por defecto de instalación.
+            {__('Restaura toda la configuración a los valores por defecto de instalación.', 'http-headers-advanced')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -218,21 +219,21 @@ export default function Tools() {
               disabled={resetting}
             >
               {resetting ? <Loader2 className="h-4 w-4 animate-spin" /> : <RotateCcw className="h-4 w-4" />}
-              Reset to Defaults
+              {__('Reset to Defaults', 'http-headers-advanced')}
             </PopoverTrigger>
             <PopoverContent className="w-72" align="start">
               <div className="space-y-3">
-                <p className="text-sm font-medium">¿Estás seguro?</p>
+                <p className="text-sm font-medium">{__('¿Estás seguro?', 'http-headers-advanced')}</p>
                 <p className="text-sm text-muted-foreground">
-                  Se restaurará la configuración de instalación. Esta acción no se puede deshacer.
-                  {' '}<a href="#" className="text-primary underline hover:text-primary/80" onClick={(e) => { e.preventDefault(); handleExport(); }}>Descarga backup de configuración</a>.
+                  {__('Se restaurará la configuración de instalación. Esta acción no se puede deshacer.', 'http-headers-advanced')}
+                  {' '}<a href="#" className="text-primary underline hover:text-primary/80" onClick={(e) => { e.preventDefault(); handleExport(); }}>{__('Descarga backup de configuración', 'http-headers-advanced')}</a>.
                 </p>
                 <div className="flex justify-end gap-2">
                   <Button variant="outline" size="sm" onClick={() => setResetOpen(false)}>
-                    Cancelar
+                    {__('Cancelar', 'http-headers-advanced')}
                   </Button>
                   <Button variant="destructive" size="sm" onClick={handleReset}>
-                    Confirmar
+                    {__('Confirmar', 'http-headers-advanced')}
                   </Button>
                 </div>
               </div>

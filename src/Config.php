@@ -19,7 +19,7 @@ class Config
      * Language Option
      * define a unique word for translate call
      */
-    public $language_name = 'http_headers_advanced';
+    public $language_name = 'http-headers-advanced';
     /**
      * Plugin text prefix
      * define a unique word for this plugin

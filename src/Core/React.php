@@ -263,7 +263,7 @@ class React
             true
         );
 
-        wp_set_script_translations($appHandle, 'jeelshha', dirname(dirname(__DIR__)) . '/languages');
+        wp_set_script_translations($appHandle, 'http-headers-advanced', dirname(dirname(__DIR__)) . '/languages');
 
         if (function_exists('wp_script_add_data')) {
             wp_script_add_data($appHandle, 'type', 'module');
@@ -275,6 +275,7 @@ class React
     protected static function enqueueProductionScripts()
     {
         $appKey = self::getAppKey();
+        $appHandle = 'antonella-react-app-' . $appKey;
         $manifest = self::getManifest();
         
         if (!$manifest) {
@@ -318,16 +319,16 @@ class React
 
         if (isset($manifest[$entryPoint]['file'])) {
             wp_enqueue_script(
-                'antonella-react-app-' . $appKey,
+                $appHandle,
                 $baseUrl . $manifest[$entryPoint]['file'],
                 ['wp-i18n'],
                 $version,
                 true
             );
             
-            wp_set_script_translations('antonella-react-app-' . $appKey, 'jeelshha', dirname(dirname(__DIR__)) . '/languages');
+            wp_set_script_translations($appHandle, 'http-headers-advanced', dirname(dirname(__DIR__)) . '/languages');
 
-            self::localizeScriptData('antonella-react-app-' . $appKey);
+            self::localizeScriptData($appHandle);
         }
     }
 

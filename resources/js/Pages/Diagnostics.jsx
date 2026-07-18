@@ -3,6 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import useRest from '@/hooks/useRest';
 import { Loader2, CheckCircle2, XCircle, Server, Shield, Globe } from 'lucide-react';
+import { __ } from '@/i18n';
 
 function Badge({ active, label }) {
   return (
@@ -28,7 +29,7 @@ export default function Diagnostics() {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-        <span className="ml-2 text-muted-foreground">Cargando diagnóstico…</span>
+        <span className="ml-2 text-muted-foreground">{__('Cargando diagnóstico…', 'http-headers-advanced')}</span>
       </div>
     );
   }
@@ -42,37 +43,37 @@ export default function Diagnostics() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Server className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Entorno</CardTitle>
+            <CardTitle>{__('Entorno', 'http-headers-advanced')}</CardTitle>
           </div>
-          <CardDescription>Información del servidor y entorno de WordPress.</CardDescription>
+          <CardDescription>{__('Información del servidor y entorno de WordPress.', 'http-headers-advanced')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell className="font-medium w-1/3">Site URL</TableCell>
+                <TableCell className="font-medium w-1/3">{__('Site URL', 'http-headers-advanced')}</TableCell>
                 <TableCell><code className="text-sm">{environment.site_url}</code></TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-medium">HTTPS</TableCell>
                 <TableCell>
-                  <Badge active={environment.is_https} label={environment.is_https ? 'Sí' : 'No'} />
+                  <Badge active={environment.is_https} label={environment.is_https ? __('Sí', 'http-headers-advanced') : __('No', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">Servidor</TableCell>
+                <TableCell className="font-medium">{__('Servidor', 'http-headers-advanced')}</TableCell>
                 <TableCell><code className="text-sm">{environment.server_software}</code></TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-medium">Apache</TableCell>
                 <TableCell>
-                  <Badge active={environment.is_apache} label={environment.is_apache ? 'Sí' : 'No'} />
+                  <Badge active={environment.is_apache} label={environment.is_apache ? __('Sí', 'http-headers-advanced') : __('No', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
               <TableRow>
                 <TableCell className="font-medium">Nginx</TableCell>
                 <TableCell>
-                  <Badge active={environment.is_nginx} label={environment.is_nginx ? 'Sí' : 'No'} />
+                  <Badge active={environment.is_nginx} label={environment.is_nginx ? __('Sí', 'http-headers-advanced') : __('No', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
               <TableRow>
@@ -93,15 +94,15 @@ export default function Diagnostics() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Globe className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Resumen de configuración</CardTitle>
+            <CardTitle>{__('Resumen de configuración', 'http-headers-advanced')}</CardTitle>
           </div>
-          <CardDescription>Estado general de las cabeceras de seguridad configuradas.</CardDescription>
+          <CardDescription>{__('Estado general de las cabeceras de seguridad configuradas.', 'http-headers-advanced')}</CardDescription>
         </CardHeader>
         <CardContent>
           <Table>
             <TableBody>
               <TableRow>
-                <TableCell className="font-medium w-1/3">Cabeceras configuradas</TableCell>
+                <TableCell className="font-medium w-1/3">{__('Cabeceras configuradas', 'http-headers-advanced')}</TableCell>
                 <TableCell>
                   <span className="inline-flex items-center rounded-md bg-blue-500/10 px-2 py-0.5 text-xs font-medium text-blue-600 dark:text-blue-400">
                     {summary.configured_headers_count}
@@ -109,7 +110,7 @@ export default function Diagnostics() {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">Modo CSP</TableCell>
+                <TableCell className="font-medium">{__('Modo CSP', 'http-headers-advanced')}</TableCell>
                 <TableCell>
                   <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
                     summary.csp_mode === 'Enforce'
@@ -123,23 +124,23 @@ export default function Diagnostics() {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">CSP Fail-safe</TableCell>
+                <TableCell className="font-medium">{__('CSP Fail-safe', 'http-headers-advanced')}</TableCell>
                 <TableCell>
-                  <Badge active={summary.csp_fail_safe} label={summary.csp_fail_safe ? 'Activado' : 'Desactivado'} />
+                  <Badge active={summary.csp_fail_safe} label={summary.csp_fail_safe ? __('Activado', 'http-headers-advanced') : __('Desactivado', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">Detección de fuentes CSP</TableCell>
+                <TableCell className="font-medium">{__('Detección de fuentes CSP', 'http-headers-advanced')}</TableCell>
                 <TableCell><code className="text-sm">{summary.csp_source_detection}</code></TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">Report collector</TableCell>
+                <TableCell className="font-medium">{__('Report collector', 'http-headers-advanced')}</TableCell>
                 <TableCell>
-                  <Badge active={summary.csp_report_collector} label={summary.csp_report_collector ? 'Activado' : 'Desactivado'} />
+                  <Badge active={summary.csp_report_collector} label={summary.csp_report_collector ? __('Activado', 'http-headers-advanced') : __('Desactivado', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">Método de inyección</TableCell>
+                <TableCell className="font-medium">{__('Método de inyección', 'http-headers-advanced')}</TableCell>
                 <TableCell>
                   <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
                     summary.injection_method === 'htaccess'
@@ -151,9 +152,9 @@ export default function Diagnostics() {
                 </TableCell>
               </TableRow>
               <TableRow>
-                <TableCell className="font-medium">.htaccess escribible</TableCell>
+                <TableCell className="font-medium">{__('.htaccess escribible', 'http-headers-advanced')}</TableCell>
                 <TableCell>
-                  <Badge active={summary.htaccess_writable} label={summary.htaccess_writable ? 'Sí' : 'No'} />
+                  <Badge active={summary.htaccess_writable} label={summary.htaccess_writable ? __('Sí', 'http-headers-advanced') : __('No', 'http-headers-advanced')} />
                 </TableCell>
               </TableRow>
             </TableBody>
@@ -166,21 +167,21 @@ export default function Diagnostics() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Shield className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>Cabeceras HTTP generadas</CardTitle>
+            <CardTitle>{__('Cabeceras HTTP generadas', 'http-headers-advanced')}</CardTitle>
           </div>
-          <CardDescription>Cabeceras que se enviarán al navegador según la configuración actual.</CardDescription>
+          <CardDescription>{__('Cabeceras que se enviarán al navegador según la configuración actual.', 'http-headers-advanced')}</CardDescription>
         </CardHeader>
         <CardContent>
           {configured_headers.length === 0 ? (
             <p className="text-sm text-muted-foreground py-4 text-center">
-              No hay cabeceras configuradas actualmente.
+              {__('No hay cabeceras configuradas actualmente.', 'http-headers-advanced')}
             </p>
           ) : (
             <Table>
               <TableHeader>
                 <TableRow>
-                  <TableHead className="w-1/3">Header</TableHead>
-                  <TableHead>Value</TableHead>
+                  <TableHead className="w-1/3">{__('Header', 'http-headers-advanced')}</TableHead>
+                  <TableHead>{__('Value', 'http-headers-advanced')}</TableHead>
                 </TableRow>
               </TableHeader>
               <TableBody>

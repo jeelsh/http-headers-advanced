@@ -7,7 +7,8 @@ export default defineConfig({
   plugins: [react(), tailwindcss()],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, './resources/js')
+      '@': path.resolve(__dirname, './resources/js'),
+      '@wordpress/i18n': path.resolve(__dirname, './resources/js/wp-i18n-stub.js')
     }
   },
   build: {

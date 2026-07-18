@@ -1,3 +1,5 @@
+import { __, _n, sprintf } from '@/i18n';
+
 const KNOWN_KEYWORDS = [
   'self',
   'none',
@@ -55,7 +57,7 @@ function parseToken(raw) {
   const hasMatchingQuotes = (first === "'" || first === '"') && first === last && raw.length > 1;
 
   if (!hasMatchingQuotes && (first === "'" || first === '"' || last === "'" || last === '"')) {
-    return { corrected: raw, error: `Comillas sin emparejar en "${raw}"`, changed: false };
+    return { corrected: raw, error: sprintf(__('Comillas sin emparejar en "%s"'), raw), changed: false };
   }
 
   const inner = hasMatchingQuotes ? raw.slice(1, -1) : raw;
@@ -74,26 +76,26 @@ function parseToken(raw) {
 
   if (hasMatchingQuotes) {
     if (inner === '') {
-      return { corrected: '', error: `Token vacío entre comillas`, changed: true };
+      return { corrected: '', error: __('Token vacío entre comillas'), changed: true };
     }
     if (INVALID_SOURCE_RE.test(inner) || inner.includes(';')) {
-      return { corrected: inner, error: `Caracteres no permitidos en "${raw}"`, changed: true };
+      return { corrected: inner, error: sprintf(__('Caracteres no permitidos en "%s"'), raw), changed: true };
     }
     if (SCHEME_RE.test(inner) || HOST_SOURCE_RE.test(inner)) {
       return { corrected: inner, error: null, changed: true };
     }
-    return { corrected: inner, error: `Origen no válido: "${raw}"`, changed: true };
+    return { corrected: inner, error: sprintf(__('Origen no válido: "%s"'), raw), changed: true };
   }
 
   if (INVALID_SOURCE_RE.test(raw) || raw.includes(';')) {
-    return { corrected: raw, error: `Caracteres no permitidos en "${raw}"`, changed: false };
+    return { corrected: raw, error: sprintf(__('Caracteres no permitidos en "%s"'), raw), changed: false };
   }
 
   if (SCHEME_RE.test(raw) || HOST_SOURCE_RE.test(raw) || raw === '*') {
     return { corrected: raw, error: null, changed: false };
   }
 
-  return { corrected: raw, error: `Token no reconocido: "${raw}"`, changed: false };
+  return { corrected: raw, error: sprintf(__('Token no reconocido: "%s"'), raw), changed: false };
 }
 
 export function parseCspValue(value, mode = 'sources') {
@@ -107,7 +109,7 @@ export function parseCspValue(value, mode = 'sources') {
     const hasMatchingQuotes = (first === "'" || first === '"') && first === last && raw.length > 1;
 
     if (!hasMatchingQuotes && (first === "'" || first === '"' || last === "'" || last === '"')) {
-      return { corrected: input, error: 'Comillas sin emparejar en report-uri' };
+      return { corrected: input, error: __('Comillas sin emparejar en report-uri') };
     }
 
     if (hasMatchingQuotes) {
@@ -121,14 +123,14 @@ export function parseCspValue(value, mode = 'sources') {
     }
 
     if (/\s/.test(raw)) {
-      return { corrected: input, error: 'report-uri debe ser una única URL https://' };
+      return { corrected: input, error: __('report-uri debe ser una única URL https://') };
     }
 
     if (isValidReportUri(raw)) {
       return { corrected: raw, error: null, errors: [] };
     }
 
-    return { corrected: input, error: 'report-uri debe ser una URL https:// válida' };
+    return { corrected: input, error: __('report-uri debe ser una URL https:// válida') };
   }
 
   const trimmed = input.trim();
@@ -163,7 +165,7 @@ export function parseCspValue(value, mode = 'sources') {
 
   const corrected = correctedParts.join('');
   const error = errors.length
-    ? `${errors.length} error(es): ${errors.map((e) => e.message).join('; ')}`
+    ? sprintf(_n('%d error: %s', '%d errores: %s', errors.length), errors.length, errors.map((e) => e.message).join('; '))
     : null;
 
   return { corrected, error, errors };

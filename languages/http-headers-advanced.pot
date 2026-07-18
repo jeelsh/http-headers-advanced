@@ -1,0 +1,566 @@
+# Copyright (C) 2026 Jeelsh
+# This file is distributed under the GPL2+.
+msgid ""
+msgstr ""
+"Project-Id-Version: HTTP Headers Advanced 1.0.0\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/http-headers-advanced\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"POT-Creation-Date: 2026-07-18T21:12:37+02:00\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"X-Generator: WP-CLI 2.12.0\n"
+"X-Domain: http-headers-advanced\n"
+
+#. Plugin Name of the plugin
+#: antonella-framework.php
+#: src/Controllers/SettingsController.php:109
+msgid "HTTP Headers Advanced"
+msgstr ""
+
+#. Plugin URI of the plugin
+#: antonella-framework.php
+msgid "https://github.com/jeelsh/http-headers-advanced"
+msgstr ""
+
+#. Description of the plugin
+#: antonella-framework.php
+msgid "Advanced HTTP headers management for WordPress."
+msgstr ""
+
+#. Author of the plugin
+#: antonella-framework.php
+msgid "Jeelsh"
+msgstr ""
+
+#. Author URI of the plugin
+#: antonella-framework.php
+msgid "https://github.com/jeelsh"
+msgstr ""
+
+#: resources/views/settings.php:14
+#: src/Controllers/SettingsController.php:92
+msgid "Settings saved successfully."
+msgstr ""
+
+#: resources/views/settings.php:23
+msgid "Enable advanced headers"
+msgstr ""
+
+#: resources/views/settings.php:27
+msgid "Activate HTTP Headers Advanced management"
+msgstr ""
+
+#: resources/views/settings.php:33
+msgid "Custom header"
+msgstr ""
+
+#: resources/views/settings.php:37
+msgid "Add a custom HTTP header value. Not used if empty."
+msgstr ""
+
+#: resources/views/settings.php:42
+msgid "Save Changes"
+msgstr ""
+
+#: src/Controllers/SettingsController.php:77
+#: src/Controllers/ToolsController.php:60
+msgid "No data provided."
+msgstr ""
+
+#: src/Controllers/SettingsController.php:103
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""
+
+#: src/Controllers/SettingsController.php:110
+msgid "Manage advanced HTTP headers for your WordPress site."
+msgstr ""
+
+#: src/Controllers/ToolsController.php:67
+msgid "Validation failed."
+msgstr ""
+
+#: src/Controllers/ToolsController.php:75
+msgid "Settings imported successfully."
+msgstr ""
+
+#: src/Controllers/ToolsController.php:87
+msgid "Settings reset to defaults."
+msgstr ""
+
+#: src/Services/HeaderValidator.php:182
+#, php-format
+msgid "%s: %s"
+msgstr ""
+
+#: src/Services/HeaderValidator.php:212
+msgid "Unmatched quotes in CSP token."
+msgstr ""
+
+#: src/Services/HeaderValidator.php:233
+#: src/Services/HeaderValidator.php:239
+#, php-format
+msgid "Invalid CSP source expression: %s"
+msgstr ""
+
+#: src/Services/HeaderValidator.php:293
+#, php-format
+msgid "%s has unmatched quotes."
+msgstr ""
+
+#: src/Services/HeaderValidator.php:303
+#, php-format
+msgid "%s must be a valid https URL."
+msgstr ""
+
+#: src/Services/RestSecurity.php:23
+msgid "Invalid or missing nonce. Please refresh the page."
+msgstr ""
+
+#: src/Services/RestSecurity.php:42
+msgid "You do not have permission to perform this action."
+msgstr ""
+
+#: resources/js/app.jsx:48
+msgid "Component not found"
+msgstr ""
+
+#: resources/js/components/layout/LeftSidebar.jsx:7
+#: resources/js/Pages/Dashboard.jsx:44
+msgid "Dashboard"
+msgstr ""
+
+#: resources/js/components/layout/LeftSidebar.jsx:8
+msgid "Settings"
+msgstr ""
+
+#: resources/js/components/layout/LeftSidebar.jsx:9
+msgid "Diagnostics"
+msgstr ""
+
+#: resources/js/components/layout/LeftSidebar.jsx:10
+msgid "Tools"
+msgstr ""
+
+#: resources/js/components/layout/RightSidebar.jsx:10
+msgid "Soporte"
+msgstr ""
+
+#: resources/js/components/layout/RightSidebar.jsx:14
+msgid "¿Necesitas ayuda? Consulta la documentación o contacta con soporte para resolver tus dudas."
+msgstr ""
+
+#: resources/js/components/layout/RightSidebar.jsx:23
+msgid "Apoyo"
+msgstr ""
+
+#: resources/js/components/layout/RightSidebar.jsx:31
+msgid "Documentación"
+msgstr ""
+
+#: resources/js/components/ui/ThemeToggle.jsx:7
+msgid "Toggle theme"
+msgstr ""
+
+#: resources/js/components/ui/Toaster.jsx:27
+msgid "Close"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:46
+msgid "Resumen del estado de HTTP Headers Advanced."
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:63
+msgid "Active Headers"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:65
+msgid "Cabeceras HTTP configuradas y activas"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:69
+msgid "Injection Method"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:71
+msgid "Inyección directa vía .htaccess"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:71
+msgid "Inyección vía send_headers de PHP"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:75
+msgid "CSP Mode"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:76
+msgid "Disabled"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:79
+msgid "Content-Security-Policy activo en modo estricto"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:81
+msgid "CSP en modo reporte (no bloquea)"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:82
+msgid "Content-Security-Policy deshabilitado"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:93
+#: resources/js/Pages/Diagnostics.jsx:46
+msgid "Entorno"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:98
+msgid "Sitio"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:104
+#: resources/js/Pages/Diagnostics.jsx:60
+#: resources/js/Pages/Diagnostics.jsx:70
+#: resources/js/Pages/Diagnostics.jsx:76
+#: resources/js/Pages/Diagnostics.jsx:157
+msgid "Sí"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:104
+#: resources/js/Pages/Diagnostics.jsx:60
+#: resources/js/Pages/Diagnostics.jsx:70
+#: resources/js/Pages/Diagnostics.jsx:76
+#: resources/js/Pages/Diagnostics.jsx:157
+msgid "No"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:108
+#: resources/js/Pages/Diagnostics.jsx:64
+msgid "Servidor"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:126
+msgid "Cabeceras activas"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:131
+msgid "No hay cabeceras configuradas."
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:149
+msgid "Acciones rápidas"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:151
+msgid "Configura las cabeceras de seguridad HTTP de tu sitio desde el panel de Settings."
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:156
+msgid "Ir a Settings"
+msgstr ""
+
+#: resources/js/Pages/Dashboard.jsx:159
+msgid "Diagnósticos"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:32
+msgid "Cargando diagnóstico…"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:48
+msgid "Información del servidor y entorno de WordPress."
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:54
+msgid "Site URL"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:97
+msgid "Resumen de configuración"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:99
+msgid "Estado general de las cabeceras de seguridad configuradas."
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:105
+msgid "Cabeceras configuradas"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:113
+msgid "Modo CSP"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:127
+msgid "CSP Fail-safe"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:129
+#: resources/js/Pages/Diagnostics.jsx:139
+msgid "Activado"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:129
+#: resources/js/Pages/Diagnostics.jsx:139
+msgid "Desactivado"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:133
+msgid "Detección de fuentes CSP"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:137
+msgid "Report collector"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:143
+msgid "Método de inyección"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:155
+msgid ".htaccess escribible"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:170
+msgid "Cabeceras HTTP generadas"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:172
+msgid "Cabeceras que se enviarán al navegador según la configuración actual."
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:177
+msgid "No hay cabeceras configuradas actualmente."
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:183
+msgid "Header"
+msgstr ""
+
+#: resources/js/Pages/Diagnostics.jsx:184
+msgid "Value"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:64
+msgid "Error al guardar"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:124
+msgid "Error en CSP"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:125
+msgid "Corrige los campos marcados en rojo antes de guardar."
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:136
+msgid "Guardado"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:136
+msgid "Configuración guardada correctamente."
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:146
+msgid "Cargando configuración…"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:159
+msgid "Cabeceras"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:171
+msgid "Obliga a los navegadores a conectarse solo por HTTPS."
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:176
+msgid "Activar HSTS"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:182
+msgid "Max-Age (segundos)"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:189
+msgid "Incluir subdominios"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:195
+msgid "Añadir directiva preload"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:207
+msgid "Otras cabeceras de seguridad"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:215
+msgid "Enviar nosniff"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:228
+msgid "Activar Referrer-Policy"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:235
+msgid "Política"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:256
+msgid "Activar X-Frame-Options"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:263
+msgid "Modo"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:281
+msgid "Activar Permissions-Policy"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:288
+msgid "Valor de la política"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:302
+msgid "Activar cabecera"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:309
+msgid "Valor"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:330
+msgid "Controla qué recursos puede cargar el navegador."
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:335
+msgid "Activar Content-Security-Policy"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:341
+msgid "Solo modo Report-Only"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:347
+msgid "Emergency fail-safe"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:353
+msgid "Auto-detectar fuentes desde HTML"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:359
+msgid "Enviar reportes al collector interno"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:366
+msgid "Directivas CSP"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:473
+msgid "Añadir upgrade-insecure-requests"
+msgstr ""
+
+#: resources/js/Pages/Settings.jsx:486
+msgid "Guardar configuración"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:61
+msgid "Campo \"plugin\" inválido o ausente. Se esperaba \"http-headers-advanced\"."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:66
+msgid "Campo \"settings\" ausente o inválido."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:72
+#, js-format
+msgid "JSON válido: %1$d configuraciones encontradas%2$s."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:74
+msgid "JSON inválido. Revisa el formato."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:106
+msgid "Configuración importada correctamente."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:110
+msgid "Error al importar la configuración."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:121
+msgid "Configuración restablecida a los valores por defecto."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:123
+msgid "Error al restablecer la configuración."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:140
+msgid "Export Settings"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:143
+msgid "Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:149
+msgid "Download Export File"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:159
+msgid "Import Settings"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:162
+msgid "Importa una configuración desde un archivo JSON exportado o pega el contenido directamente."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:179
+msgid "Seleccionar archivo JSON"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:184
+msgid "O pega aquí el contenido del archivo JSON..."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:199
+msgid "Importar configuración"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:209
+msgid "Reset Configuration"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:212
+msgid "Restaura toda la configuración a los valores por defecto de instalación."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:222
+msgid "Reset to Defaults"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:226
+msgid "¿Estás seguro?"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:228
+msgid "Se restaurará la configuración de instalación. Esta acción no se puede deshacer."
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:229
+msgid "Descarga backup de configuración"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:233
+msgid "Cancelar"
+msgstr ""
+
+#: resources/js/Pages/Tools.jsx:236
+msgid "Confirmar"
+msgstr ""

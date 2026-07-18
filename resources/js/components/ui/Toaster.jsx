@@ -1,6 +1,7 @@
 import { useToast } from '@/hooks/useToast';
 import { Alert, AlertTitle, AlertDescription } from '@/components/ui/alert';
 import { X } from 'lucide-react';
+import { __ } from '@/i18n';
 
 export default function Toaster() {
   const { toasts, dismiss } = useToast();
@@ -23,7 +24,7 @@ export default function Toaster() {
             type="button"
             onClick={() => dismiss(toast.id)}
             className="absolute top-3 right-3 rounded-sm opacity-70 hover:opacity-100 focus:outline-none"
-            aria-label="Cerrar"
+            aria-label={__('Close', 'http-headers-advanced')}
           >
             <X className="h-4 w-4" />
           </button>

@@ -2,6 +2,7 @@ import React from 'react';
 import { createRoot } from 'react-dom/client';
 import { ToastProvider } from '@/components/providers/ToastProvider';
 import Toaster from '@/components/ui/Toaster';
+import { __ } from '@/i18n';
 import '../css/app.css';
 
 // Auto-register all components in /Pages
@@ -44,7 +45,7 @@ function App({ component, props }) {
         }}
       >
         <p>
-          ⚠️ Component not found{component ? `: ${component}` : ''}
+          ⚠️ {__('Component not found', 'http-headers-advanced')}{component ? `: ${component}` : ''}
         </p>
       </div>
     );

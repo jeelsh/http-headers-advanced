@@ -1,12 +1,13 @@
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { LayoutDashboard, Settings, Stethoscope, Wrench } from "lucide-react";
+import { __ } from "@/i18n";
 
 const navItems = [
-  { id: "dashboard", label: "Dashboard", icon: LayoutDashboard },
-  { id: "settings", label: "Settings", icon: Settings },
-  { id: "diagnostics", label: "Diagnostics", icon: Stethoscope },
-  { id: "tools", label: "Tools", icon: Wrench },
+  { id: "dashboard", label: __("Dashboard", "http-headers-advanced"), icon: LayoutDashboard },
+  { id: "settings", label: __("Settings", "http-headers-advanced"), icon: Settings },
+  { id: "diagnostics", label: __("Diagnostics", "http-headers-advanced"), icon: Stethoscope },
+  { id: "tools", label: __("Tools", "http-headers-advanced"), icon: Wrench },
 ];
 
 export default function LeftSidebar({ activeTab, onChange, isDark, assetBaseUrl }) {

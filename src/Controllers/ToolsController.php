@@ -57,14 +57,14 @@ class ToolsController
         $data = $request->get_json_params();
 
         if (empty($data) || !\is_array($data)) {
-            return new \WP_REST_Response(['message' => 'No data provided.'], 400);
+            return new \WP_REST_Response(['message' => \__('No data provided.', 'http-headers-advanced')], 400);
         }
 
         $validation = Tools::validate($data);
 
         if (!$validation['valid']) {
             return new \WP_REST_Response([
-                'message' => 'Validation failed.',
+                'message' => \__('Validation failed.', 'http-headers-advanced'),
                 'errors'  => $validation['errors'],
             ], 422);
         }
@@ -72,7 +72,7 @@ class ToolsController
         Tools::import($data['settings']);
 
         return new \WP_REST_Response([
-            'message' => 'Settings imported successfully.',
+            'message' => \__('Settings imported successfully.', 'http-headers-advanced'),
         ], 200);
     }
 
@@ -84,7 +84,7 @@ class ToolsController
         Tools::reset();
 
         return new \WP_REST_Response([
-            'message' => 'Settings reset to defaults.',
+            'message' => \__('Settings reset to defaults.', 'http-headers-advanced'),
         ], 200);
     }
 }

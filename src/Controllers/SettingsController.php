@@ -74,7 +74,7 @@ class SettingsController
         $data = $request->get_json_params();
 
         if (empty($data) || !\is_array($data)) {
-            return new \WP_REST_Response(['message' => 'No data provided.'], 400);
+            return new \WP_REST_Response(['message' => \__('No data provided.', 'http-headers-advanced')], 400);
         }
 
         try {
@@ -89,7 +89,7 @@ class SettingsController
         HeaderDispatcher::apply();
 
         return new \WP_REST_Response([
-            'message'  => 'Settings saved successfully.',
+            'message'  => \__('Settings saved successfully.', 'http-headers-advanced'),
             'settings' => $headers->toArray(),
         ], 200);
     }
