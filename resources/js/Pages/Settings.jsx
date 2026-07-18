@@ -263,7 +263,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
             <CardContent className="space-y-4">
               <FieldSwitch
                 id="csp_enabled"
-                label="Activar CSP"
+                label="Activar Content-Security-Policy"
                 checked={form.csp_enabled}
                 onChange={(v) => handleChange('csp_enabled', v)}
               />
@@ -296,21 +296,17 @@ export default function Settings({ assetBaseUrl, isDark }) {
 
               <h4 className="text-sm font-semibold">Directivas CSP</h4>
 
-              {form.csp_enabled && (
-                <>
-                  <FieldTextarea id="csp_default_src" label="default-src" value={form.csp_default_src} onChange={(v) => handleChange('csp_default_src', v)} />
-                  <FieldTextarea id="csp_script_src" label="script-src" value={form.csp_script_src} onChange={(v) => handleChange('csp_script_src', v)} />
-                  <FieldTextarea id="csp_style_src" label="style-src" value={form.csp_style_src} onChange={(v) => handleChange('csp_style_src', v)} />
-                  <FieldTextarea id="csp_img_src" label="img-src" value={form.csp_img_src} onChange={(v) => handleChange('csp_img_src', v)} />
-                  <FieldTextarea id="csp_connect_src" label="connect-src" value={form.csp_connect_src} onChange={(v) => handleChange('csp_connect_src', v)} />
-                  <FieldTextarea id="csp_font_src" label="font-src" value={form.csp_font_src} onChange={(v) => handleChange('csp_font_src', v)} />
-                  <FieldTextarea id="csp_object_src" label="object-src" value={form.csp_object_src} onChange={(v) => handleChange('csp_object_src', v)} />
-                  <FieldTextarea id="csp_base_uri" label="base-uri" value={form.csp_base_uri} onChange={(v) => handleChange('csp_base_uri', v)} />
-                  <FieldTextarea id="csp_frame_ancestors" label="frame-ancestors" value={form.csp_frame_ancestors} onChange={(v) => handleChange('csp_frame_ancestors', v)} />
-                  <FieldTextarea id="csp_form_action" label="form-action" value={form.csp_form_action} onChange={(v) => handleChange('csp_form_action', v)} />
-                  <FieldTextarea id="csp_report_uri" label="report-uri" value={form.csp_report_uri} onChange={(v) => handleChange('csp_report_uri', v)} placeholder="https://..." />
-                </>
-              )}
+              <FieldTextarea id="csp_default_src" label="default-src" value={form.csp_default_src} onChange={(v) => handleChange('csp_default_src', v)} />
+              <FieldTextarea id="csp_script_src" label="script-src" value={form.csp_script_src} onChange={(v) => handleChange('csp_script_src', v)} />
+              <FieldTextarea id="csp_style_src" label="style-src" value={form.csp_style_src} onChange={(v) => handleChange('csp_style_src', v)} />
+              <FieldTextarea id="csp_img_src" label="img-src" value={form.csp_img_src} onChange={(v) => handleChange('csp_img_src', v)} />
+              <FieldTextarea id="csp_connect_src" label="connect-src" value={form.csp_connect_src} onChange={(v) => handleChange('csp_connect_src', v)} />
+              <FieldTextarea id="csp_font_src" label="font-src" value={form.csp_font_src} onChange={(v) => handleChange('csp_font_src', v)} />
+              <FieldTextarea id="csp_object_src" label="object-src" value={form.csp_object_src} onChange={(v) => handleChange('csp_object_src', v)} />
+              <FieldTextarea id="csp_base_uri" label="base-uri" value={form.csp_base_uri} onChange={(v) => handleChange('csp_base_uri', v)} />
+              <FieldTextarea id="csp_frame_ancestors" label="frame-ancestors" value={form.csp_frame_ancestors} onChange={(v) => handleChange('csp_frame_ancestors', v)} />
+              <FieldTextarea id="csp_form_action" label="form-action" value={form.csp_form_action} onChange={(v) => handleChange('csp_form_action', v)} />
+              <FieldTextarea id="csp_report_uri" label="report-uri" value={form.csp_report_uri} onChange={(v) => handleChange('csp_report_uri', v)} placeholder="https://..." />
 
               <Separator />
 
