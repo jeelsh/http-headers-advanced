@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { HelpCircle } from "lucide-react";
+import { HelpCircle, BookOpen } from "lucide-react";
 import DashedLine from "@/components/ui/DashedLine";
 
 export default function RightSidebar({ isDark, assetBaseUrl }) {
@@ -12,14 +12,24 @@ export default function RightSidebar({ isDark, assetBaseUrl }) {
       <p className="text-sm text-muted-foreground mb-4">
         ¿Necesitas ayuda? Consulta la documentación o contacta con soporte para resolver tus dudas.
       </p>
-      <Button
-        variant="outline"
-        className="w-full gap-2"
-        onClick={() => window.open("https://support.example.com", "_blank")}
-      >
-        <HelpCircle className="h-4 w-4" />
-        Apoyo
-      </Button>
+      <div className="space-y-2">
+        <Button
+          variant="outline"
+          className="w-full gap-2"
+          onClick={() => window.location.href = "mailto:jeelsh@protonmail.com"}
+        >
+          <HelpCircle className="h-4 w-4" />
+          Apoyo
+        </Button>
+        <Button
+          variant="outline"
+          className="w-full gap-2"
+          onClick={() => window.open("https://github.com/jeelsh/http-headers-advanced", "_blank")}
+        >
+          <BookOpen className="h-4 w-4" />
+          Documentación
+        </Button>
+      </div>
     </aside>
   );
 }
