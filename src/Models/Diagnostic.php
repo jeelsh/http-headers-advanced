@@ -2,6 +2,8 @@
 
 namespace JEELSHHA\Models;
 
+use JEELSHHA\Services\HeaderDispatcher;
+
 class Diagnostic
 {
     /**
@@ -63,6 +65,8 @@ class Diagnostic
             'csp_fail_safe'            => $headers->get('csp_emergency_failsafe'),
             'csp_source_detection'     => $cspSourceDetection,
             'csp_report_collector'     => $headers->get('csp_report_collector'),
+            'injection_method'         => HeaderDispatcher::getMethod(),
+            'htaccess_writable'        => ServerEnvironment::isHtaccessWritable(),
         ];
     }
 

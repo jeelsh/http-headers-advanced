@@ -138,6 +138,24 @@ export default function Diagnostics() {
                   <Badge active={summary.csp_report_collector} label={summary.csp_report_collector ? 'Activado' : 'Desactivado'} />
                 </TableCell>
               </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">Método de inyección</TableCell>
+                <TableCell>
+                  <span className={`inline-flex items-center rounded-md px-2 py-0.5 text-xs font-medium ${
+                    summary.injection_method === 'htaccess'
+                      ? 'bg-green-500/10 text-green-600 dark:text-green-400'
+                      : 'bg-blue-500/10 text-blue-600 dark:text-blue-400'
+                  }`}>
+                    {summary.injection_method === 'htaccess' ? '.htaccess' : 'PHP (send_headers)'}
+                  </span>
+                </TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell className="font-medium">.htaccess escribible</TableCell>
+                <TableCell>
+                  <Badge active={summary.htaccess_writable} label={summary.htaccess_writable ? 'Sí' : 'No'} />
+                </TableCell>
+              </TableRow>
             </TableBody>
           </Table>
         </CardContent>

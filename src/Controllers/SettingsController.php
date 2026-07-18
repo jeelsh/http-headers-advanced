@@ -4,6 +4,7 @@ namespace JEELSHHA\Controllers;
 
 use JEELSHHA\Core\React;
 use JEELSHHA\Models\Headers;
+use JEELSHHA\Services\HeaderDispatcher;
 
 class SettingsController
 {
@@ -73,6 +74,8 @@ class SettingsController
 
         $headers = Headers::load();
         $headers->fill($data)->save();
+
+        HeaderDispatcher::apply();
 
         return new \WP_REST_Response([
             'message'  => 'Settings saved successfully.',
