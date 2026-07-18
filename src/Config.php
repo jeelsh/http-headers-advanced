@@ -52,6 +52,7 @@ class Config
      * @example ['body_class',[__NAMESPACE__.'\ExampleController','function'],10,2]
      */
     public $add_action = [
+        ['rest_api_init', __NAMESPACE__ . '\Controllers\SettingsController::registerRoutes', 10],
     ];
     /**
      * Custom shortcodes

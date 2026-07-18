@@ -6,8 +6,6 @@ import Settings from "./Settings";
 export default function AdminPanel({
   title,
   message,
-  enabled,
-  customHeader,
   assetBaseUrl,
 }) {
   const [activeTab, setActiveTab] = useState("dashboard");
@@ -47,10 +45,6 @@ export default function AdminPanel({
       )}
       {activeTab === "settings" && (
         <Settings
-          title={title}
-          message={message}
-          enabled={enabled}
-          customHeader={customHeader}
           assetBaseUrl={assetBaseUrl}
           isDark={isDark}
         />

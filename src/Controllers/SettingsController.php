@@ -3,6 +3,7 @@
 namespace JEELSHHA\Controllers;
 
 use JEELSHHA\Core\React;
+use JEELSHHA\Models\Headers;
 
 class SettingsController
 {
@@ -24,6 +25,62 @@ class SettingsController
     }
 
     /**
+     * Register REST API routes.
+     */
+    public static function registerRoutes()
+    {
+        \register_rest_route('http-headers-advanced/v1', '/settings', [
+            [
+                'methods'             => \WP_REST_Server::READABLE,
+                'callback'            => [__CLASS__, 'getSettings'],
+                'permission_callback' => [__CLASS__, 'permissionCheck'],
+            ],
+            [
+                'methods'             => \WP_REST_Server::CREATABLE,
+                'callback'            => [__CLASS__, 'saveSettings'],
+                'permission_callback' => [__CLASS__, 'permissionCheck'],
+            ],
+        ]);
+    }
+
+    /**
+     * Permission callback: only admins.
+     */
+    public static function permissionCheck(\WP_REST_Request $request)
+    {
+        return \current_user_can('manage_options');
+    }
+
+    /**
+     * GET /settings – Return all header settings.
+     */
+    public static function getSettings(\WP_REST_Request $request)
+    {
+        $headers = Headers::load();
+        return new \WP_REST_Response($headers->toArray(), 200);
+    }
+
+    /**
+     * POST /settings – Save header settings.
+     */
+    public static function saveSettings(\WP_REST_Request $request)
+    {
+        $data = $request->get_json_params();
+
+        if (empty($data) || !\is_array($data)) {
+            return new \WP_REST_Response(['message' => 'No data provided.'], 400);
+        }
+
+        $headers = Headers::load();
+        $headers->fill($data)->save();
+
+        return new \WP_REST_Response([
+            'message'  => 'Settings saved successfully.',
+            'settings' => $headers->toArray(),
+        ], 200);
+    }
+
+    /**
      * Render the React settings page.
      */
     public static function settingsPage()
@@ -35,10 +92,8 @@ class SettingsController
         $assetBaseUrl = self::assetBaseUrl();
 
         $pageData = [
-            'title' => \__('HTTP Headers Advanced', 'http-headers-advanced'),
-            'message' => \__('Manage advanced HTTP headers for your WordPress site.', 'http-headers-advanced'),
-            'enabled' => (bool) \get_option('http_headers_advanced_enabled', 0),
-            'customHeader' => \get_option('http_headers_advanced_custom_header', ''),
+            'title'        => \__('HTTP Headers Advanced', 'http-headers-advanced'),
+            'message'      => \__('Manage advanced HTTP headers for your WordPress site.', 'http-headers-advanced'),
             'assetBaseUrl' => $assetBaseUrl,
         ];
 

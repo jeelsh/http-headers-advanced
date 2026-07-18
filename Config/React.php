@@ -81,7 +81,7 @@ return [
      */
     'global_localize_script' => [
         'HTTP_HEADERS_ADVANCED' => [
-            'restUrl' => rest_url('http-headers-advanced/v1/admin'),
+            'restUrl' => rest_url('http-headers-advanced/v1'),
             'nonce' => wp_create_nonce('wp_rest'),
             'ajaxUrl' => admin_url('admin-ajax.php'),
         ]
