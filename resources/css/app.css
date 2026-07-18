@@ -177,3 +177,14 @@
 #wpfooter {
     display: none !important;
 }
+
+[data-antonella-react] h1,
+[data-antonella-react] h2,
+[data-antonella-react] h3,
+[data-antonella-react] h4,
+[data-antonella-react] h5,
+[data-antonella-react] h6 {
+    color: inherit !important;
+    margin: inherit !important;
+    font-size: inherit !important;
+}

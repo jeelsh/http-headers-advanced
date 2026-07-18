@@ -43,7 +43,7 @@ export default function AdminPanel({
       assetBaseUrl={assetBaseUrl}
     >
       {activeTab === "dashboard" && (
-        <Dashboard assetBaseUrl={assetBaseUrl} isDark={isDark} />
+        <Dashboard assetBaseUrl={assetBaseUrl} isDark={isDark} onTabChange={setActiveTab} />
       )}
       {activeTab === "settings" && (
         <Settings
