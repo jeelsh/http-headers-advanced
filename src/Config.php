@@ -16,12 +16,12 @@ class Config
      * Language Option
      * define a unique word for translate call
      */
-    public $language_name = 'antonella';
+    public $language_name = 'http_headers_advanced';
     /**
      * Plugin text prefix
      * define a unique word for this plugin
      */
-    public $plugin_prefix = 'ch_nella';
+    public $plugin_prefix = 'http_headers_advanced';
     /**
      * POST data process
      * get the post data and execute the function

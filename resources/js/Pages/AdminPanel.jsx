@@ -15,7 +15,7 @@ export default function AdminPanel({
     if (typeof window === "undefined") {
       return false;
     }
-    const stored = window.localStorage.getItem("ch_nella_theme");
+    const stored = window.localStorage.getItem("http_headers_advanced_theme");
     if (stored) {
       return stored === "dark";
     }
@@ -27,7 +27,7 @@ export default function AdminPanel({
 
   useEffect(() => {
     if (typeof window !== "undefined") {
-      window.localStorage.setItem("ch_nella_theme", isDark ? "dark" : "light");
+      window.localStorage.setItem("http_headers_advanced_theme", isDark ? "dark" : "light");
     }
   }, [isDark]);
 
