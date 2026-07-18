@@ -6,6 +6,9 @@
 
 namespace JEELSHHA;
 
+defined('ABSPATH') or die();
+
+
 /*
 * Class Start
 * @package JEELSHHA\Start

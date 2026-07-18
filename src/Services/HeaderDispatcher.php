@@ -6,6 +6,9 @@ use JEELSHHA\Models\Headers;
 use JEELSHHA\Models\ServerEnvironment;
 use JEELSHHA\Services\HeaderValidator;
 
+defined('ABSPATH') or die();
+
+
 class HeaderDispatcher
 {
     const OPTION_METHOD = 'http_headers_advanced_injection_method';

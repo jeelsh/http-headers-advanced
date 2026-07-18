@@ -5,6 +5,9 @@ namespace JEELSHHA\Services;
 use JEELSHHA\Models\ServerEnvironment;
 use JEELSHHA\Services\HeaderValidator;
 
+defined('ABSPATH') or die();
+
+
 class HtaccessWriter
 {
     const MARKER = 'JEELSH HTTP Headers Advanced';

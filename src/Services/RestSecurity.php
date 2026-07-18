@@ -2,6 +2,8 @@
 
 namespace JEELSHHA\Services;
 
+defined('ABSPATH') or die();
+
 class RestSecurity
 {
     /**

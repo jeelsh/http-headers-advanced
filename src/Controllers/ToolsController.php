@@ -5,6 +5,8 @@ namespace JEELSHHA\Controllers;
 use JEELSHHA\Models\Tools;
 use JEELSHHA\Services\RestSecurity;
 
+defined('ABSPATH') or die();
+
 class ToolsController
 {
     /**

@@ -1,5 +1,8 @@
 <?php
 
+
+defined('ABSPATH') or die();
+
 if (class_exists('Jenssegers\Blade\Blade') && !function_exists('view')) {
     function view($BladePage, $Attributes = [])
     {

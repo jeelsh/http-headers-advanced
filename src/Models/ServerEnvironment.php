@@ -2,6 +2,9 @@
 
 namespace JEELSHHA\Models;
 
+defined('ABSPATH') or die();
+
+
 class ServerEnvironment
 {
     /**

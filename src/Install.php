@@ -4,6 +4,9 @@ namespace JEELSHHA;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 /**
  * Install Class - Handles plugin installation, database setup and updates
  * 

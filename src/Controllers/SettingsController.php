@@ -8,6 +8,9 @@ use JEELSHHA\Services\HeaderDispatcher;
 use JEELSHHA\Services\HeaderValidator;
 use JEELSHHA\Services\RestSecurity;
 
+defined('ABSPATH') or die();
+
+
 class SettingsController
 {
     /**

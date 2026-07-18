@@ -4,6 +4,9 @@ namespace JEELSHHA;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 class PostTypes
 {
     public static function index()

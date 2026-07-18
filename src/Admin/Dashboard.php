@@ -3,6 +3,9 @@ namespace JEELSHHA\Admin;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 class Dashboard
 {
     var $array_dashboard;

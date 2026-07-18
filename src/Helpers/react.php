@@ -2,6 +2,9 @@
 
 use JEELSHHA\Core\React;
 
+defined('ABSPATH') or die();
+
+
 /**
  * React Helper Functions
  * 

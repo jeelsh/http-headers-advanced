@@ -4,6 +4,9 @@ namespace JEELSHHA\Models;
 
 use JEELSHHA\Services\HeaderValidator;
 
+defined('ABSPATH') or die();
+
+
 class Headers
 {
     /**

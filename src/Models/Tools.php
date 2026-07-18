@@ -4,6 +4,9 @@ namespace JEELSHHA\Models;
 
 use JEELSHHA\Services\HeaderDispatcher;
 
+defined('ABSPATH') or die();
+
+
 class Tools
 {
     const PLUGIN_SLUG = 'http-headers-advanced';

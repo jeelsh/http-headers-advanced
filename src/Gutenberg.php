@@ -4,6 +4,9 @@ namespace JEELSHHA;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 class Gutenberg
 {
     public function __construct()

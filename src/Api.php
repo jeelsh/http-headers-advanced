@@ -5,6 +5,9 @@ namespace JEELSHHA;
 use JEELSHHA\Config;
 use JEELSHHA\Services\RestSecurity;
 
+defined('ABSPATH') or die();
+
+
 /**
  * WordPress REST API integration for Antonella Framework
  * @see Documentation: docs/configuration/api-endpoints.md for examples

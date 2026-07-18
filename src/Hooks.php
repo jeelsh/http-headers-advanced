@@ -8,6 +8,9 @@ namespace JEELSHHA;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 class Hooks
 {
     /**

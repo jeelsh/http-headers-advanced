@@ -4,6 +4,9 @@ namespace JEELSHHA\Core;
 
 use Closure;
 
+defined('ABSPATH') or die();
+
+
 /**
  * React Component Renderer
  * 

@@ -1,4 +1,7 @@
 <?php
+
+
+defined('ABSPATH') or die();
 /**
  * React Configuration
  * 

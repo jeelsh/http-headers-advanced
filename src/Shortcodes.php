@@ -4,6 +4,9 @@ namespace JEELSHHA;
 
 use JEELSHHA\Config;
 
+defined('ABSPATH') or die();
+
+
 class Shortcodes
 {
     public function __construct()

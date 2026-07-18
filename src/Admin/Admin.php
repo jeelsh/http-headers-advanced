@@ -5,6 +5,9 @@ namespace JEELSHHA\Admin;
 use JEELSHHA\Config;
 use JEELSHHA\Security;
 
+defined('ABSPATH') or die();
+
+
 class Admin
 {
     var $plugin_prefix;

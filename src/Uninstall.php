@@ -2,6 +2,9 @@
 
 namespace JEELSHHA;
 
+defined('ABSPATH') or die();
+
+
 class Uninstall
 {
     public function __construct()

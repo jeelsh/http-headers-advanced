@@ -1,5 +1,8 @@
 <?php
 
+
+defined('ABSPATH') or die();
+
 /**
  * Antonella Helpers
  * Dont Touch this file

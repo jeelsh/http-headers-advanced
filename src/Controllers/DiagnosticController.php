@@ -5,6 +5,9 @@ namespace JEELSHHA\Controllers;
 use JEELSHHA\Models\Diagnostic;
 use JEELSHHA\Services\RestSecurity;
 
+defined('ABSPATH') or die();
+
+
 class DiagnosticController
 {
     /**
