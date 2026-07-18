@@ -9,6 +9,7 @@ package.lock
 .env
 wp-test/*
 storage/cache/*
+assets/dist
 wp-cli.phar
 antonella-framework-for-wp.zip
 db_data

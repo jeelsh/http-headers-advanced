@@ -8,9 +8,12 @@ import { Separator } from '@/components/ui/separator';
 import { Switch } from '@/components/ui/switch';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Textarea } from '@/components/ui/textarea';
+import CspSourceField from '@/components/CspSourceField';
+import { parseCspValue } from '@/lib/csp';
 import useRest from '@/hooks/useRest';
 import useHashTab from '@/hooks/useHashTab';
-import { Save, Loader2, CheckCircle2, AlertCircle, Shield, Globe, Lock } from 'lucide-react';
+import { useToast } from '@/hooks/useToast';
+import { Save, Loader2, Shield, Globe, Lock } from 'lucide-react';
 
 const DEFAULTS = {
   hsts_enabled: true,
@@ -49,11 +52,17 @@ const validSubTabs = ['hsts', 'headers', 'csp'];
 
 export default function Settings({ assetBaseUrl, isDark }) {
   const [form, setForm] = useState(DEFAULTS);
-  const [status, setStatus] = useState(null); // 'saved' | 'error'
+  const [cspErrors, setCspErrors] = useState({});
+  const { toast } = useToast();
   const { tab: subTab, setTab: handleSubTabChange } = useHashTab(validSubTabs, 'hsts', 1, 'settings');
 
   const { execute: loadSettings, loading: loadingGet } = useRest('/settings', { method: 'GET' });
-  const { execute: saveSettings, loading: loadingSave } = useRest('/settings', { method: 'POST' });
+  const { execute: saveSettings, loading: loadingSave } = useRest('/settings', {
+    method: 'POST',
+    onError: (err) => {
+      toast({ variant: 'destructive', title: 'Error al guardar', description: err.message, duration: null });
+    },
+  });
 
   useEffect(() => {
     loadSettings().then((data) => {
@@ -63,12 +72,67 @@ export default function Settings({ assetBaseUrl, isDark }) {
 
   const handleChange = (key, value) => {
     setForm((prev) => ({ ...prev, [key]: value }));
-    setStatus(null);
+    setCspErrors((prev) => ({ ...prev, [key]: null }));
+  };
+
+  const handleCspValidation = (id, error) => {
+    setCspErrors((prev) => ({ ...prev, [id]: error }));
   };
 
   const handleSave = async () => {
-    const result = await saveSettings(form);
-    setStatus(result ? 'saved' : 'error');
+    const cspFields = [
+      'csp_default_src',
+      'csp_script_src',
+      'csp_style_src',
+      'csp_img_src',
+      'csp_connect_src',
+      'csp_font_src',
+      'csp_object_src',
+      'csp_base_uri',
+      'csp_frame_ancestors',
+      'csp_form_action',
+    ];
+
+    const payload = { ...form };
+    const errors = {};
+    let hasErrors = false;
+
+    for (const key of cspFields) {
+      const result = parseCspValue(String(form[key] ?? ''), 'sources');
+      if (result.error) {
+        errors[key] = result.error;
+        hasErrors = true;
+      } else {
+        payload[key] = result.corrected;
+      }
+    }
+
+    const reportResult = parseCspValue(String(form.csp_report_uri ?? ''), 'report-uri');
+    if (reportResult.error) {
+      errors.csp_report_uri = reportResult.error;
+      hasErrors = true;
+    } else {
+      payload.csp_report_uri = reportResult.corrected;
+    }
+
+    setCspErrors(errors);
+
+    if (hasErrors) {
+      toast({
+        variant: 'destructive',
+        title: 'Error en CSP',
+        description: 'Corrige los campos marcados en rojo antes de guardar.',
+        duration: null,
+      });
+      return;
+    }
+
+    const result = await saveSettings(payload);
+    if (!result) {
+      return;
+    }
+
+    toast({ variant: 'success', title: 'Guardado', description: 'Configuración guardada correctamente.' });
     if (result?.settings) {
       setForm((prev) => ({ ...prev, ...result.settings }));
     }
@@ -300,17 +364,106 @@ export default function Settings({ assetBaseUrl, isDark }) {
 
               <h4 className="text-sm font-semibold">Directivas CSP</h4>
 
-              <FieldTextarea id="csp_default_src" label="default-src" value={form.csp_default_src} onChange={(v) => handleChange('csp_default_src', v)} />
-              <FieldTextarea id="csp_script_src" label="script-src" value={form.csp_script_src} onChange={(v) => handleChange('csp_script_src', v)} />
-              <FieldTextarea id="csp_style_src" label="style-src" value={form.csp_style_src} onChange={(v) => handleChange('csp_style_src', v)} />
-              <FieldTextarea id="csp_img_src" label="img-src" value={form.csp_img_src} onChange={(v) => handleChange('csp_img_src', v)} />
-              <FieldTextarea id="csp_connect_src" label="connect-src" value={form.csp_connect_src} onChange={(v) => handleChange('csp_connect_src', v)} />
-              <FieldTextarea id="csp_font_src" label="font-src" value={form.csp_font_src} onChange={(v) => handleChange('csp_font_src', v)} />
-              <FieldTextarea id="csp_object_src" label="object-src" value={form.csp_object_src} onChange={(v) => handleChange('csp_object_src', v)} />
-              <FieldTextarea id="csp_base_uri" label="base-uri" value={form.csp_base_uri} onChange={(v) => handleChange('csp_base_uri', v)} />
-              <FieldTextarea id="csp_frame_ancestors" label="frame-ancestors" value={form.csp_frame_ancestors} onChange={(v) => handleChange('csp_frame_ancestors', v)} />
-              <FieldTextarea id="csp_form_action" label="form-action" value={form.csp_form_action} onChange={(v) => handleChange('csp_form_action', v)} />
-              <FieldTextarea id="csp_report_uri" label="report-uri" value={form.csp_report_uri} onChange={(v) => handleChange('csp_report_uri', v)} placeholder="https://..." />
+              <CspSourceField
+                id="csp_default_src"
+                label="default-src"
+                value={form.csp_default_src}
+                onChange={(v) => handleChange('csp_default_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_default_src}
+                placeholder="'self' https://example.com 'nonce-abc123'"
+              />
+              <CspSourceField
+                id="csp_script_src"
+                label="script-src"
+                value={form.csp_script_src}
+                onChange={(v) => handleChange('csp_script_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_script_src}
+                placeholder="'self' 'unsafe-inline' 'unsafe-eval'"
+              />
+              <CspSourceField
+                id="csp_style_src"
+                label="style-src"
+                value={form.csp_style_src}
+                onChange={(v) => handleChange('csp_style_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_style_src}
+                placeholder="'self' 'unsafe-inline'"
+              />
+              <CspSourceField
+                id="csp_img_src"
+                label="img-src"
+                value={form.csp_img_src}
+                onChange={(v) => handleChange('csp_img_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_img_src}
+                placeholder="'self' data: https:"
+              />
+              <CspSourceField
+                id="csp_connect_src"
+                label="connect-src"
+                value={form.csp_connect_src}
+                onChange={(v) => handleChange('csp_connect_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_connect_src}
+                placeholder="'self' https://api.example.com"
+              />
+              <CspSourceField
+                id="csp_font_src"
+                label="font-src"
+                value={form.csp_font_src}
+                onChange={(v) => handleChange('csp_font_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_font_src}
+                placeholder="'self' data: https:"
+              />
+              <CspSourceField
+                id="csp_object_src"
+                label="object-src"
+                value={form.csp_object_src}
+                onChange={(v) => handleChange('csp_object_src', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_object_src}
+                placeholder="'none'"
+              />
+              <CspSourceField
+                id="csp_base_uri"
+                label="base-uri"
+                value={form.csp_base_uri}
+                onChange={(v) => handleChange('csp_base_uri', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_base_uri}
+                placeholder="'self'"
+              />
+              <CspSourceField
+                id="csp_frame_ancestors"
+                label="frame-ancestors"
+                value={form.csp_frame_ancestors}
+                onChange={(v) => handleChange('csp_frame_ancestors', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_frame_ancestors}
+                placeholder="'self' https://example.com"
+              />
+              <CspSourceField
+                id="csp_form_action"
+                label="form-action"
+                value={form.csp_form_action}
+                onChange={(v) => handleChange('csp_form_action', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_form_action}
+                placeholder="'self'"
+              />
+              <CspSourceField
+                mode="report-uri"
+                id="csp_report_uri"
+                label="report-uri"
+                value={form.csp_report_uri}
+                onChange={(v) => handleChange('csp_report_uri', v)}
+                onValidation={handleCspValidation}
+                error={cspErrors.csp_report_uri}
+                placeholder="https://..."
+              />
 
               <Separator />
 
@@ -331,16 +484,6 @@ export default function Settings({ assetBaseUrl, isDark }) {
           {loadingSave ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
           Guardar configuración
         </Button>
-        {status === 'saved' && (
-          <span className="flex items-center gap-1 text-sm text-green-600">
-            <CheckCircle2 className="h-4 w-4" /> Guardado correctamente
-          </span>
-        )}
-        {status === 'error' && (
-          <span className="flex items-center gap-1 text-sm text-destructive">
-            <AlertCircle className="h-4 w-4" /> Error al guardar
-          </span>
-        )}
       </div>
     </div>
   );

@@ -1,5 +1,7 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
+import { ToastProvider } from '@/components/providers/ToastProvider';
+import Toaster from '@/components/ui/Toaster';
 import '../css/app.css';
 
 // Auto-register all components in /Pages
@@ -49,6 +51,15 @@ function App({ component, props }) {
   }
   
   return <Component {...props} />;
+}
+
+function Root({ component, props }) {
+  return (
+    <ToastProvider>
+      <Toaster />
+      <App component={component} props={props} />
+    </ToastProvider>
+  );
 }
 
 const SCRIPT_ATTR = 'data-antonella-react-app';
@@ -122,7 +133,7 @@ function mountContainer(container) {
     }
 
     const root = createRoot(container);
-    root.render(<App component={data.component} props={data.props} />);
+    root.render(<Root component={data.component} props={data.props} />);
     container.setAttribute(MOUNTED_ATTR, '1');
   } catch (error) {
     console.error('Failed to mount React container:', error);

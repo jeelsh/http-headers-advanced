@@ -228,6 +228,7 @@ class Headers
 
             foreach ($cspKeys as $key => $directive) {
                 $val = \trim((string) $this->get($key));
+                $val = \preg_replace('/\s+/', ' ', $val);
                 if ($val !== '') {
                     $directives[] = $directive . ' ' . $val;
                 }
