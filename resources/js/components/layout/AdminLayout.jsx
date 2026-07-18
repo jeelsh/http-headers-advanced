@@ -28,7 +28,7 @@ export default function AdminLayout({
           assetBaseUrl={assetBaseUrl}
         />
         <DashedColumn position="right" assetBaseUrl={assetBaseUrl} isDark={isDark} className="hidden md:block" />
-        <main className="flex-1 overflow-auto p-6">
+        <main className="flex-1 overflow-auto p-6 custom-scrollbar">
           {children}
         </main>
         <DashedColumn position="left" assetBaseUrl={assetBaseUrl} isDark={isDark} className="hidden md:block" />
