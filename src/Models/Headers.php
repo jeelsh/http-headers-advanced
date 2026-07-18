@@ -2,6 +2,8 @@
 
 namespace JEELSHHA\Models;
 
+use JEELSHHA\Services\HeaderValidator;
+
 class Headers
 {
     /**
@@ -232,7 +234,7 @@ class Headers
             }
 
             $reportUri = \trim((string) $this->get('csp_report_uri'));
-            if ($reportUri !== '') {
+            if ($reportUri !== '' && HeaderValidator::isValidReportUri($reportUri)) {
                 $directives[] = 'report-uri ' . $reportUri;
             }
 

@@ -4,6 +4,7 @@ namespace JEELSHHA\Services;
 
 use JEELSHHA\Models\Headers;
 use JEELSHHA\Models\ServerEnvironment;
+use JEELSHHA\Services\HeaderValidator;
 
 class HeaderDispatcher
 {
@@ -51,6 +52,7 @@ class HeaderDispatcher
 
         $headers = Headers::load();
         $built = $headers->buildHeaders();
+        $built = HeaderValidator::sanitizeHeaders($built);
 
         foreach ($built as $name => $value) {
             \header($name . ': ' . $value);

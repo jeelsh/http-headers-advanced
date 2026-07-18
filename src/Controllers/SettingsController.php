@@ -5,6 +5,7 @@ namespace JEELSHHA\Controllers;
 use JEELSHHA\Core\React;
 use JEELSHHA\Models\Headers;
 use JEELSHHA\Services\HeaderDispatcher;
+use JEELSHHA\Services\HeaderValidator;
 
 class SettingsController
 {
@@ -70,6 +71,12 @@ class SettingsController
 
         if (empty($data) || !\is_array($data)) {
             return new \WP_REST_Response(['message' => 'No data provided.'], 400);
+        }
+
+        try {
+            $data = HeaderValidator::validateSettings($data);
+        } catch (\InvalidArgumentException $e) {
+            return new \WP_REST_Response(['message' => $e->getMessage()], 400);
         }
 
         $headers = Headers::load();

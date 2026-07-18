@@ -28,7 +28,6 @@ class Config
      * @example ['post_data'=>'JEELSHHA::function']
      */
     public $post = [
-        'submit_http_headers_advanced' => __NAMESPACE__ . '\Controllers\SettingsController::save',
     ];
     /**
      * GET data process

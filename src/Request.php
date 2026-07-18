@@ -49,18 +49,51 @@ class Request
     public function process($datas)
     {
         require_once(ABSPATH . 'wp-includes/pluggable.php');
-        
-        // Verify nonce for security when processing form data
+
         foreach ($datas as $key => $data) {
-            // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification handled by calling code or not required for GET requests
-            if (isset($_REQUEST[$key])) {
-                // Sanitize and unslash request data
-                // phpcs:ignore WordPress.Security.NonceVerification.Recommended -- Nonce verification handled by calling code or not required for GET requests
-                $sanitized_value = sanitize_text_field(wp_unslash($_REQUEST[$key]));
-                call_user_func_array($data, [$sanitized_value]);
-            } else {
+            if (!isset($_REQUEST[$key])) {
                 continue;
             }
+
+            if ($this->isPost()) {
+                $this->verify_nonce('http_headers_advanced_nonce', 'http_headers_advanced_action');
+            }
+
+            if (!$this->isAllowedCallback($data)) {
+                continue;
+            }
+
+            $raw = \is_array($_REQUEST[$key]) ? '' : wp_unslash($_REQUEST[$key]);
+            $sanitized_value = sanitize_text_field($raw);
+            call_user_func_array($data, [$sanitized_value]);
         }
+    }
+
+    /**
+     * Check if the current request method is POST.
+     *
+     * @return bool
+     */
+    protected function isPost(): bool
+    {
+        return \is_string($_SERVER['REQUEST_METHOD'] ?? null)
+            && \strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
+    }
+
+    /**
+     * Allow only static callbacks from the Controllers namespace.
+     *
+     * @param mixed $callback
+     * @return bool
+     */
+    protected function isAllowedCallback($callback): bool
+    {
+        $callableName = '';
+
+        if (!\is_callable($callback, false, $callableName)) {
+            return false;
+        }
+
+        return \strpos($callableName, 'JEELSHHA\\Controllers\\') === 0;
     }
 }

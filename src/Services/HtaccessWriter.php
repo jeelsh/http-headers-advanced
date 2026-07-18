@@ -3,6 +3,7 @@
 namespace JEELSHHA\Services;
 
 use JEELSHHA\Models\ServerEnvironment;
+use JEELSHHA\Services\HeaderValidator;
 
 class HtaccessWriter
 {
@@ -24,11 +25,13 @@ class HtaccessWriter
 
         $lines = [];
 
+        $headers = HeaderValidator::sanitizeHeaders($headers);
+
         if (!empty($headers)) {
             $lines[] = '<IfModule mod_headers.c>';
 
             foreach ($headers as $name => $value) {
-                $escaped = \str_replace('"', '\\"', $value);
+                $escaped = self::escapeApacheHeaderValue($value);
                 $lines[] = '    Header set ' . $name . ' "' . $escaped . '"';
             }
 
@@ -36,6 +39,18 @@ class HtaccessWriter
         }
 
         return self::insertWithMarkers($path, self::MARKER, $lines);
+    }
+
+    /**
+     * Escape a value to be safely used inside a double-quoted Apache
+     * mod_headers directive.
+     *
+     * @param string $value
+     * @return string
+     */
+    protected static function escapeApacheHeaderValue(string $value): string
+    {
+        return \addcslashes($value, '"\\');
     }
 
     /**
