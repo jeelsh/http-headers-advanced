@@ -3,6 +3,7 @@ import AdminLayout from "@/components/layout/AdminLayout";
 import Dashboard from "./Dashboard";
 import Settings from "./Settings";
 import Diagnostics from "./Diagnostics";
+import Tools from "./Tools";
 
 export default function AdminPanel({
   title,
@@ -52,6 +53,9 @@ export default function AdminPanel({
       )}
       {activeTab === "diagnostics" && (
         <Diagnostics />
+      )}
+      {activeTab === "tools" && (
+        <Tools />
       )}
     </AdminLayout>
   );

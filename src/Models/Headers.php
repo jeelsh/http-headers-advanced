@@ -251,6 +251,19 @@ class Headers
     }
 
     /**
+     * Restaura todos los atributos a los valores por defecto del schema.
+     */
+    public function resetToDefaults(): self
+    {
+        foreach (static::$schema as $key => $default) {
+            $this->attributes[$key] = $default;
+            $this->dirty[$key] = true;
+        }
+
+        return $this;
+    }
+
+    /**
      * Devuelve el esquema con los valores por defecto.
      */
     public static function schema(): array
