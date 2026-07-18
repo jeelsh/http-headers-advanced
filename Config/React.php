@@ -75,4 +75,15 @@ return [
      * 'normalize' - Applies only box-sizing, margin/padding reset and basic normalizations. Less aggressive.
      */
     'style_isolation_mode' => 'reset',
+    
+    /**
+     * Global localize script
+     */
+    'global_localize_script' => [
+        'HTTP_HEADERS_ADVANCED' => [
+            'restUrl' => rest_url('http-headers-advanced/v1/admin'),
+            'nonce' => wp_create_nonce('wp_rest'),
+            'ajaxUrl' => admin_url('admin-ajax.php'),
+        ]
+    ],
 ];
