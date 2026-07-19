@@ -111,6 +111,7 @@ class SettingsController
             'assetBaseUrl' => $assetBaseUrl,
         ];
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo React::render('AdminPanel', $pageData);
     }
 

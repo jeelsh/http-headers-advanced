@@ -179,7 +179,8 @@ class HeaderValidator
             if ($tokenResult['error'] !== null) {
                 throw new \InvalidArgumentException(
                     \sprintf(
-                        \__('%s: %s', 'http-headers-advanced'),
+                        /* translators: 1: CSP field name, 2: error message */
+                        \__('%1$s: %2$s', 'http-headers-advanced'),
                         $field ? $field : 'CSP source list',
                         $tokenResult['error']
                     )
@@ -230,13 +231,27 @@ class HeaderValidator
 
         if ($hasQuotes) {
             if (!self::isValidSourceExpression($inner)) {
-                return ['corrected' => $inner, 'error' => \sprintf(\__('Invalid CSP source expression: %s', 'http-headers-advanced'), $token)];
+                return [
+                    'corrected' => $inner,
+                    'error' => \sprintf(
+                        /* translators: %s: token value */
+                        \__('Invalid CSP source expression: %s', 'http-headers-advanced'),
+                        $token
+                    ),
+                ];
             }
             return ['corrected' => $inner, 'error' => null];
         }
 
         if (!self::isValidSourceExpression($token)) {
-            return ['corrected' => $token, 'error' => \sprintf(\__('Invalid CSP source expression: %s', 'http-headers-advanced'), $token)];
+            return [
+                'corrected' => $token,
+                'error' => \sprintf(
+                    /* translators: %s: token value */
+                    \__('Invalid CSP source expression: %s', 'http-headers-advanced'),
+                    $token
+                ),
+            ];
         }
 
         return ['corrected' => $token, 'error' => null];
@@ -290,7 +305,11 @@ class HeaderValidator
             $uri = \trim(\substr($uri, 1, -1));
         } elseif ($first === "'" || $first === '"' || $last === "'" || $last === '"') {
             throw new \InvalidArgumentException(
-                \sprintf(\__('%s has unmatched quotes.', 'http-headers-advanced'), $field)
+                \sprintf(
+                    /* translators: %s: field name */
+                    \__('%s has unmatched quotes.', 'http-headers-advanced'),
+                    $field
+                )
             );
         }
 
@@ -300,7 +319,11 @@ class HeaderValidator
 
         if (!self::isValidReportUri($uri)) {
             throw new \InvalidArgumentException(
-                \sprintf(\__('%s must be a valid https URL.', 'http-headers-advanced'), $field)
+                \sprintf(
+                    /* translators: %s: field name */
+                    \__('%s must be a valid https URL.', 'http-headers-advanced'),
+                    $field
+                )
             );
         }
 
