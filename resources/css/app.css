@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import "tailwindcss" important;
 @import "tw-animate-css";
 @import "shadcn/tailwind.css";
 @import "@fontsource-variable/inter";
@@ -172,6 +172,10 @@
 
 #wpbody-content {
     padding: 0 !important;
+}
+
+#wpbody-content .notice {
+    display: none !important;
 }
 
 #wpfooter {
