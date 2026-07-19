@@ -22,6 +22,7 @@ class HtaccessWriter
     {
         $path = ServerEnvironment::getHtaccessPath();
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
         if (!\file_exists($path) || !\is_writable($path)) {
             return false;
         }
@@ -65,6 +66,7 @@ class HtaccessWriter
     {
         $path = ServerEnvironment::getHtaccessPath();
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
         if (!\file_exists($path) || !\is_writable($path)) {
             return false;
         }

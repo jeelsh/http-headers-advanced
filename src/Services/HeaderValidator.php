@@ -104,7 +104,7 @@ class HeaderValidator
             return false;
         }
 
-        $parts = \parse_url($uri);
+        $parts = \wp_parse_url($uri);
 
         if ($parts === false || !isset($parts['scheme'], $parts['host']) || $parts['host'] === '') {
             return false;

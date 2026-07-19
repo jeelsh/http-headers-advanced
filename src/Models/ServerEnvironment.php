@@ -14,7 +14,7 @@ class ServerEnvironment
      */
     public static function getServerType(): string
     {
-        $software = $_SERVER['SERVER_SOFTWARE'] ?? '';
+        $software = isset($_SERVER['SERVER_SOFTWARE']) ? \sanitize_text_field(\wp_unslash($_SERVER['SERVER_SOFTWARE'])) : '';
 
         if (\stripos($software, 'LiteSpeed') !== false) {
             return 'litespeed';
@@ -65,6 +65,7 @@ class ServerEnvironment
             return false;
         }
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
         return \is_writable($path);
     }
 
@@ -75,6 +76,7 @@ class ServerEnvironment
     {
         $path = self::getHtaccessPath();
 
+        // phpcs:ignore WordPress.WP.AlternativeFunctions.file_system_operations_is_writable
         return \file_exists($path) && \is_writable($path);
     }
 }
