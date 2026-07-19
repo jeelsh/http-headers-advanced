@@ -62,6 +62,7 @@ class React
 
     protected static function bootController()
     {
+        // phpcs:ignore WordPress.PHP.DevelopmentFunctions.error_log_debug_backtrace
         $trace = debug_backtrace(DEBUG_BACKTRACE_IGNORE_ARGS, 3);
 
         foreach ($trace as $frame) {
@@ -215,7 +216,7 @@ class React
 
     protected static function getCurrentUrl()
     {
-        return isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '/';
+        return isset($_SERVER['REQUEST_URI']) ? esc_url_raw(wp_unslash($_SERVER['REQUEST_URI'])) : '/';
     }
 
     protected static function enqueueDevScripts()

@@ -54,6 +54,7 @@ class Request
         require_once(ABSPATH . 'wp-includes/pluggable.php');
 
         foreach ($datas as $key => $data) {
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended
             if (!isset($_REQUEST[$key])) {
                 continue;
             }
@@ -66,8 +67,9 @@ class Request
                 continue;
             }
 
-            $raw = \is_array($_REQUEST[$key]) ? '' : wp_unslash($_REQUEST[$key]);
-            $sanitized_value = sanitize_text_field($raw);
+            // phpcs:ignore WordPress.Security.NonceVerification.Recommended, WordPress.Security.ValidatedSanitizedInput.InputNotSanitized
+            $raw = \is_array($_REQUEST[$key]) ? '' : \sanitize_text_field(\wp_unslash($_REQUEST[$key]));
+            $sanitized_value = $raw;
             call_user_func_array($data, [$sanitized_value]);
         }
     }
@@ -79,8 +81,8 @@ class Request
      */
     protected function isPost(): bool
     {
-        return \is_string($_SERVER['REQUEST_METHOD'] ?? null)
-            && \strtoupper($_SERVER['REQUEST_METHOD']) === 'POST';
+        $method = isset($_SERVER['REQUEST_METHOD']) ? \sanitize_text_field(\wp_unslash($_SERVER['REQUEST_METHOD'])) : '';
+        return \strtoupper($method) === 'POST';
     }
 
     /**

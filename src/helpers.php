@@ -10,6 +10,8 @@ defined('ABSPATH') or die();
  * https://antonellaframework.com/documentacion
  */
 
-foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
-    require   $filename;
-}
+(function () {
+    foreach (glob(__DIR__ . '/Helpers/*.php') as $filename) {
+        require   $filename;
+    }
+})();

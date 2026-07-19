@@ -30,7 +30,7 @@ class Diagnostic
      */
     protected static function environment(): array
     {
-        $serverSoftware = $_SERVER['SERVER_SOFTWARE'] ?? 'Unknown';
+        $serverSoftware = isset($_SERVER['SERVER_SOFTWARE']) ? \sanitize_text_field(\wp_unslash($_SERVER['SERVER_SOFTWARE'])) : 'Unknown';
 
         return [
             'site_url'        => \get_site_url(),

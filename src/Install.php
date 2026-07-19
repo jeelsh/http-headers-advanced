@@ -178,6 +178,7 @@ class Install
         // Check if column already exists
         // Use information_schema for better prepared statement compatibility
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $column_exists = $wpdb->get_results(
             $wpdb->prepare(
                 "SELECT COLUMN_NAME FROM INFORMATION_SJEELSHHAEMA.COLUMNS WHERE TABLE_SJEELSHHAEMA = DATABASE() AND TABLE_NAME = %s AND COLUMN_NAME = %s",
@@ -191,10 +192,11 @@ class Install
         }
         
         // Add the column with manual escaping for identifiers
+        $safe_table_name  = esc_sql($table_name);
         $safe_column_name = esc_sql($column['name']);
-        $safe_definition = esc_sql($column['definition']);
-        
-        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery,WordPress.DB.DirectDatabaseQuery.NoCaching,WordPress.DB.PreparedSQL.NotPrepared -- Direct query needed for table structure modification, identifiers escaped manually for DDL operation
+        $safe_definition  = esc_sql($column['definition']);
+
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.PreparedSQL.NotPrepared, WordPress.DB.DirectDatabaseQuery.SchemaChange -- Direct query needed for table structure modification, identifiers escaped manually for DDL operation
         $result = self::$wpdb->query("ALTER TABLE `" . $safe_table_name . "` ADD COLUMN `" . $safe_column_name . "` " . $safe_definition);
         
         if ($result === false) {
@@ -215,6 +217,7 @@ class Install
     {
         // Use information_schema for better prepared statement compatibility
         global $wpdb;
+        // phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
         $table_exists = $wpdb->get_var(
             $wpdb->prepare(
                 "SELECT TABLE_NAME FROM INFORMATION_SJEELSHHAEMA.TABLES WHERE TABLE_SJEELSHHAEMA = DATABASE() AND TABLE_NAME = %s",
