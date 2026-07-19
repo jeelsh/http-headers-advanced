@@ -115,9 +115,9 @@ class React
         }
 
         $containerId = self::$currentContainerId ?? self::getConfig('container_id', 'antonella-react-root');
-        $dataJson = htmlspecialchars(json_encode(self::$pageData), ENT_QUOTES, 'UTF-8');
+        $dataJson = json_encode(self::$pageData);
         $componentName = self::$component ?? '';
-        $propsJson = htmlspecialchars(json_encode(self::$props), ENT_QUOTES, 'UTF-8');
+        $propsJson = json_encode(self::$props);
         $appKey = self::getAppKey();
         
         echo sprintf(
@@ -125,8 +125,8 @@ class React
             esc_attr($containerId),
             esc_attr($appKey),
             esc_attr($componentName),
-            $propsJson,
-            $dataJson
+            esc_attr($propsJson),
+            esc_attr($dataJson)
         );
     }
 
@@ -465,6 +465,7 @@ class React
 {$sel} table { border-collapse: collapse; }";
         }
 
+        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
         echo '<style id="antonella-isolation-' . esc_attr($containerId) . '">' . $css . "\n</style>\n";
     }
 
