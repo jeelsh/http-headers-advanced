@@ -18,6 +18,15 @@ namespace JEELSHHA;
 
 defined('ABSPATH') or die(exit());
 
+add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links) {
+    $settings_url = admin_url('options-general.php?page=http-headers-advanced');
+    $settings_link = '<a href="' . esc_url($settings_url) . '">' . esc_html__('Settings', 'http-headers-advanced') . '</a>';
+
+    array_unshift($links, $settings_link);
+
+    return $links;
+});
+
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
     $loader = require __DIR__ . '/vendor/autoload.php';
     $antonella = new Start;
