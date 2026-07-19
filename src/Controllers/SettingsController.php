@@ -125,7 +125,7 @@ class SettingsController
             return \rtrim(React::getConfig('vite_server', 'http://localhost:3000'), '/');
         }
 
-        $pluginUrl = \plugin_dir_url(\dirname(\dirname(__DIR__)) . '/antonella-framework.php');
+        $pluginUrl = \plugin_dir_url(\dirname(\dirname(__DIR__)) . '/http-headers-advanced.php');
         $buildPath = React::getConfig('build_path', 'assets/dist');
 
         return \rtrim($pluginUrl . $buildPath, '/');

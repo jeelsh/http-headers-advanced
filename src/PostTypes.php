@@ -54,21 +54,21 @@ class PostTypes
       $menu_name = $pt['labels']['menu_name'] ?? $singular;
       $all_items = $pt['labels']['all_items'] ?? $plural;
       // translators: %s is the singular name of the post type
-      $view_item = sprintf(esc_html__('See %s', 'antonella-framework'), $singular);
+      $view_item = sprintf(esc_html__('See %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $add_new_item = sprintf(esc_html__('Add %s', 'antonella-framework'), $singular);
+      $add_new_item = sprintf(esc_html__('Add %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $add_new = sprintf(esc_html__('Add %s', 'antonella-framework'), $singular);
+      $add_new = sprintf(esc_html__('Add %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $edit_item = sprintf(esc_html__('Edit %s', 'antonella-framework'), $singular);
+      $edit_item = sprintf(esc_html__('Edit %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $update_item = sprintf(esc_html__('Update %s', 'antonella-framework'), $singular);
+      $update_item = sprintf(esc_html__('Update %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $search_items = sprintf(esc_html__('Search %s', 'antonella-framework'), $singular);
+      $search_items = sprintf(esc_html__('Search %s', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $not_found = sprintf(esc_html__('%s not found', 'antonella-framework'), $singular);
+      $not_found = sprintf(esc_html__('%s not found', 'http-headers-advanced'), $singular);
       // translators: %s is the singular name of the post type
-      $not_found_in_trash = sprintf(esc_html__('%s not found in trash', 'antonella-framework'), $singular);
+      $not_found_in_trash = sprintf(esc_html__('%s not found in trash', 'http-headers-advanced'), $singular);
   
       $labels = [
           'name' => $name,
@@ -93,7 +93,7 @@ class PostTypes
       ];
   
       // translators: %s is the singular name of the post type
-      $description = sprintf(esc_html__('Info about %s', 'antonella-framework'), $singular);
+      $description = sprintf(esc_html__('Info about %s', 'http-headers-advanced'), $singular);
   
       $args = [
           'label' => $pt['args']['label'] ?? $plural,
@@ -166,26 +166,26 @@ class PostTypes
         $name = $tx['labels']['name'] ?? $plural;
         $singular_name = $tx['labels']['singular_name'] ?? $singular;
         // translators: %s is the singular name of the taxonomy
-        $search_items = sprintf(esc_html__('Search %s', 'antonella-framework'), $singular);
+        $search_items = sprintf(esc_html__('Search %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $all_items = sprintf(esc_html__('All %s', 'antonella-framework'), $singular);
+        $all_items = sprintf(esc_html__('All %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $parent_item = sprintf(esc_html__('Parent %s', 'antonella-framework'), $singular);
+        $parent_item = sprintf(esc_html__('Parent %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $parent_item_colon = sprintf(esc_html__('Parent %s:', 'antonella-framework'), $singular);
+        $parent_item_colon = sprintf(esc_html__('Parent %s:', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $edit_item = sprintf(esc_html__('Edit %s', 'antonella-framework'), $singular);
+        $edit_item = sprintf(esc_html__('Edit %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $view_item = sprintf(esc_html__('View %s', 'antonella-framework'), $singular);
+        $view_item = sprintf(esc_html__('View %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $update_item = sprintf(esc_html__('Update %s', 'antonella-framework'), $singular);
+        $update_item = sprintf(esc_html__('Update %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $add_new_item = sprintf(esc_html__('Add new %s', 'antonella-framework'), $singular);
+        $add_new_item = sprintf(esc_html__('Add new %s', 'http-headers-advanced'), $singular);
         // translators: %s is the singular name of the taxonomy
-        $new_item_name = sprintf(esc_html__('New %s', 'antonella-framework'), $singular);
+        $new_item_name = sprintf(esc_html__('New %s', 'http-headers-advanced'), $singular);
         $menu_name = $tx['labels']['menu_name'] ?? $plural;
         // translators: %s is the plural name of the taxonomy
-        $popular_items = sprintf(esc_html__('Popular %s', 'antonella-framework'), $plural);
+        $popular_items = sprintf(esc_html__('Popular %s', 'http-headers-advanced'), $plural);
         $labels = [
             'name' => $name,
              'singular_name' => $singular_name,

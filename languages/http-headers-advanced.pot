@@ -15,28 +15,28 @@ msgstr ""
 "X-Domain: http-headers-advanced\n"
 
 #. Plugin Name of the plugin
-#: antonella-framework.php
+#: http-headers-advanced.php
 #: src/Controllers/SettingsController.php:109
 msgid "HTTP Headers Advanced"
 msgstr ""
 
 #. Plugin URI of the plugin
-#: antonella-framework.php
+#: http-headers-advanced.php
 msgid "https://github.com/jeelsh/http-headers-advanced"
 msgstr ""
 
 #. Description of the plugin
-#: antonella-framework.php
+#: http-headers-advanced.php
 msgid "Advanced HTTP headers management for WordPress."
 msgstr ""
 
 #. Author of the plugin
-#: antonella-framework.php
+#: http-headers-advanced.php
 msgid "Jeelsh"
 msgstr ""
 
 #. Author URI of the plugin
-#: antonella-framework.php
+#: http-headers-advanced.php
 msgid "https://github.com/jeelsh"
 msgstr ""
 

@@ -64,7 +64,7 @@ class Antonella
         'phar-io',
         'myclabs',
         'symfony/console',
-        'antonella-framework'
+        'http-headers-advanced'
     ];
 
     protected $testdir = 'wp-test';
@@ -274,7 +274,7 @@ class Antonella
      */
     public function updateProjectFiles()
     {
-        $oldFile = "antonella-framework.php";
+        $oldFile = "http-headers-advanced.php";
         $newFile = basename($this->dir) . '.php';
 
         if (file_exists($oldFile)) {
@@ -464,7 +464,7 @@ class Antonella
 
         // Update main plugin file
         $this->updateFileContent(
-            $this->dir . DIRECTORY_SEPARATOR . "antonella-framework.php",
+            $this->dir . DIRECTORY_SEPARATOR . "http-headers-advanced.php",
             $currentNamespace,
             $newNamespace
         );
@@ -930,7 +930,7 @@ JSX;
     private function removeModel()
     {
         $this->showInfo("Removing WordPress Eloquent Models...");
-        exec('composer remove antonella-framework/wordpress-eloquent-models');
+        exec('composer remove http-headers-advanced/wordpress-eloquent-models');
         $this->showSuccess("WordPress Eloquent Models removed successfully!");
     }
 
@@ -1108,7 +1108,7 @@ JSX;
         }
 
         echo "\n";
-        $this->showInfo("📦 Installing antonella-framework/wordpress-eloquent-models via Composer...");
+        $this->showInfo("📦 Installing http-headers-advanced/wordpress-eloquent-models via Composer...");
 
         // Simple progress indicator
         echo "Installing";
@@ -1118,7 +1118,7 @@ JSX;
         }
         echo "\n";
 
-        exec('composer require antonella-framework/wordpress-eloquent-models 2>&1', $composerOutput, $returnCode);
+        exec('composer require http-headers-advanced/wordpress-eloquent-models 2>&1', $composerOutput, $returnCode);
 
         if ($returnCode === 0) {
             $this->showSuccess("✅ WordPress Eloquent Models successfully installed!");
@@ -1126,7 +1126,7 @@ JSX;
             $this->showInfo("💡 Tip: Use models like User, Post, Comment, etc. with Eloquent syntax");
         } else {
             $this->showError("❌ Installation failed. Please check your composer configuration.");
-            $this->showInfo("💡 Make sure the package antonella-framework/wordpress-eloquent-models exists");
+            $this->showInfo("💡 Make sure the package http-headers-advanced/wordpress-eloquent-models exists");
             $this->showInfo("Composer output:");
             foreach ($composerOutput as $line) {
                 echo "  $line\n";

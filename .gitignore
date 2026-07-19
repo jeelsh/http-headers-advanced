@@ -11,7 +11,7 @@ wp-test/*
 storage/cache/*
 assets/dist
 wp-cli.phar
-antonella-framework-for-wp.zip
+http-headers-advanced-for-wp.zip
 db_data
 wordpress
 antonella.backup
