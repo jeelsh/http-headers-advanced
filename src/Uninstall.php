@@ -2,6 +2,8 @@
 
 namespace JEELSHHA;
 
+use JEELSHHA\Services\HtaccessWriter;
+
 defined('ABSPATH') or die();
 
 
@@ -13,6 +15,8 @@ class Uninstall
 
     public static function index()
     {
+        // Remove .htaccess HTTP headers block if exists
+        HtaccessWriter::remove();
 
         $config = new Config();
         $uninstall = new Uninstall();
