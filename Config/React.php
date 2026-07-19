@@ -29,7 +29,7 @@ return [
      * 'develop' - Loads React from Vite dev server (HMR enabled)
      * 'production' - Loads from built assets
      */
-    'app_env' => 'develop',
+    'app_env' => 'production',
 
     /**
      * Vite development server URL

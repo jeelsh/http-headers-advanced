@@ -33,7 +33,11 @@ class Antonella
         '.env-example',
         '.phpcs.xml',
         'docker-compose.yaml',
-        'docker'
+        'docker',
+        'components.json',
+        'jsconfig.json',
+        'pnpm-lock.yaml',
+        'pnpm-workspace.yaml'
     ];
 
     protected $base_dirs_to_exclude = [
@@ -46,7 +50,9 @@ class Antonella
         'node_modules',
         'wordpress',
         'docs',
-        'test'
+        'test',
+        'resources',
+        'scripts'
     ];
 
     protected $vendor_dirs_to_exclude = [
