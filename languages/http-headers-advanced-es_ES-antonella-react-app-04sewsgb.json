@@ -1,0 +1,335 @@
+{
+  "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
+  "generator": "WP-CLI/2.12.0",
+  "domain": "http-headers-advanced",
+  "locale_data": {
+    "http-headers-advanced": {
+      "": {
+        "domain": "http-headers-advanced",
+        "lang": "es_ES",
+        "plural-forms": "nplurals=2; plural=(n != 1);"
+      },
+      "Dashboard": [
+        "Escritorio"
+      ],
+      "Settings": [
+        "Configuración"
+      ],
+      "Diagnostics": [
+        "Diagnósticos"
+      ],
+      "Tools": [
+        "Herramientas"
+      ],
+      "Entorno": [
+        "Entorno"
+      ],
+      "Sí": [
+        "Sí"
+      ],
+      "No": [
+        "No"
+      ],
+      "Servidor": [
+        "Servidor"
+      ],
+      "Cargando diagnóstico…": [
+        "Cargando diagnóstico…"
+      ],
+      "Información del servidor y entorno de WordPress.": [
+        "Información del servidor y entorno de WordPress."
+      ],
+      "Site URL": [
+        "URL del sitio"
+      ],
+      "Resumen de configuración": [
+        "Resumen de configuración"
+      ],
+      "Estado general de las cabeceras de seguridad configuradas.": [
+        "Estado general de las cabeceras de seguridad configuradas."
+      ],
+      "Cabeceras configuradas": [
+        "Cabeceras configuradas"
+      ],
+      "Modo CSP": [
+        "Modo CSP"
+      ],
+      "CSP Fail-safe": [
+        "Mecanismo de seguridad CSP"
+      ],
+      "Activado": [
+        "Activado"
+      ],
+      "Desactivado": [
+        "Desactivado"
+      ],
+      "Detección de fuentes CSP": [
+        "Detección de fuentes CSP"
+      ],
+      "Report collector": [
+        "Colector de informes"
+      ],
+      "Método de inyección": [
+        "Método de inyección"
+      ],
+      ".htaccess escribible": [
+        ".htaccess escribible"
+      ],
+      "Cabeceras HTTP generadas": [
+        "Cabeceras HTTP generadas"
+      ],
+      "Cabeceras que se enviarán al navegador según la configuración actual.": [
+        "Cabeceras que se enviarán al navegador según la configuración actual."
+      ],
+      "No hay cabeceras configuradas actualmente.": [
+        "No hay cabeceras configuradas actualmente."
+      ],
+      "Header": [
+        "Cabecera"
+      ],
+      "Value": [
+        "Valor"
+      ],
+      "Soporte": [
+        "Soporte"
+      ],
+      "¿Necesitas ayuda? Consulta la documentación o contacta con soporte para resolver tus dudas.": [
+        "¿Necesitas ayuda? Consulta la documentación o contacta con soporte para resolver tus dudas."
+      ],
+      "Apoyo": [
+        "Apoyo"
+      ],
+      "Documentación": [
+        "Documentación"
+      ],
+      "Close": [
+        "Cerrar"
+      ],
+      "Resumen del estado de HTTP Headers Advanced.": [
+        "Resumen del estado de HTTP Headers Advanced."
+      ],
+      "Active Headers": [
+        "Cabeceras activas"
+      ],
+      "Cabeceras HTTP configuradas y activas": [
+        "Cabeceras HTTP configuradas y activas"
+      ],
+      "Injection Method": [
+        "Método de inyección"
+      ],
+      "Inyección directa vía .htaccess": [
+        "Inyección directa mediante .htaccess"
+      ],
+      "Inyección vía send_headers de PHP": [
+        "Inyección mediante send_headers de PHP"
+      ],
+      "CSP Mode": [
+        "Modo CSP"
+      ],
+      "Disabled": [
+        "Desactivado"
+      ],
+      "Content-Security-Policy activo en modo estricto": [
+        "Content-Security-Policy activo en modo estricto"
+      ],
+      "CSP en modo reporte (no bloquea)": [
+        "CSP en modo de informe (no bloquea)"
+      ],
+      "Content-Security-Policy deshabilitado": [
+        "Content-Security-Policy deshabilitado"
+      ],
+      "Sitio": [
+        "Sitio"
+      ],
+      "Cabeceras activas": [
+        "Cabeceras activas"
+      ],
+      "No hay cabeceras configuradas.": [
+        "No hay cabeceras configuradas."
+      ],
+      "Acciones rápidas": [
+        "Acciones rápidas"
+      ],
+      "Configura las cabeceras de seguridad HTTP de tu sitio desde el panel de Settings.": [
+        "Configura las cabeceras de seguridad HTTP de tu sitio desde el panel de configuración."
+      ],
+      "Ir a Settings": [
+        "Ir a configuración"
+      ],
+      "Diagnósticos": [
+        "Diagnósticos"
+      ],
+      "Component not found": [
+        "Componente no encontrado"
+      ],
+      "Campo \"plugin\" inválido o ausente. Se esperaba \"http-headers-advanced\".": [
+        "El campo \"plugin\" no es válido o no existe. Se esperaba \"http-headers-advanced\"."
+      ],
+      "Campo \"settings\" ausente o inválido.": [
+        "El campo \"settings\" no existe o no es válido."
+      ],
+      "JSON válido: %1$d configuraciones encontradas%2$s.": [
+        "JSON válido: %1$d configuraciones encontradas%2$s."
+      ],
+      "JSON inválido. Revisa el formato.": [
+        "JSON no válido. Revisa el formato."
+      ],
+      "Configuración importada correctamente.": [
+        "Configuración importada correctamente."
+      ],
+      "Error al importar la configuración.": [
+        "Error al importar la configuración."
+      ],
+      "Configuración restablecida a los valores por defecto.": [
+        "Configuración restablecida a los valores predeterminados."
+      ],
+      "Error al restablecer la configuración.": [
+        "Error al restablecer la configuración."
+      ],
+      "Export Settings": [
+        "Exportar configuración"
+      ],
+      "Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio.": [
+        "Descarga la configuración actual en formato JSON para crear una copia de seguridad o transferirla a otro sitio."
+      ],
+      "Download Export File": [
+        "Descargar archivo de exportación"
+      ],
+      "Import Settings": [
+        "Importar configuración"
+      ],
+      "Importa una configuración desde un archivo JSON exportado o pega el contenido directamente.": [
+        "Importa una configuración desde un archivo JSON exportado o pega el contenido directamente."
+      ],
+      "Seleccionar archivo JSON": [
+        "Seleccionar archivo JSON"
+      ],
+      "O pega aquí el contenido del archivo JSON...": [
+        "O pega aquí el contenido del archivo JSON..."
+      ],
+      "Importar configuración": [
+        "Importar configuración"
+      ],
+      "Reset Configuration": [
+        "Restablecer configuración"
+      ],
+      "Restaura toda la configuración a los valores por defecto de instalación.": [
+        "Restaura toda la configuración a los valores predeterminados de instalación."
+      ],
+      "Reset to Defaults": [
+        "Restablecer valores predeterminados"
+      ],
+      "¿Estás seguro?": [
+        "¿Estás seguro?"
+      ],
+      "Se restaurará la configuración de instalación. Esta acción no se puede deshacer.": [
+        "Se restaurará la configuración de instalación. Esta acción no se puede deshacer."
+      ],
+      "Descarga backup de configuración": [
+        "Descargar copia de seguridad de la configuración"
+      ],
+      "Cancelar": [
+        "Cancelar"
+      ],
+      "Confirmar": [
+        "Confirmar"
+      ],
+      "Toggle theme": [
+        "Cambiar tema"
+      ],
+      "Error al guardar": [
+        "Error al guardar"
+      ],
+      "Error en CSP": [
+        "Error en CSP"
+      ],
+      "Corrige los campos marcados en rojo antes de guardar.": [
+        "Corrige los campos marcados en rojo antes de guardar."
+      ],
+      "Guardado": [
+        "Guardado"
+      ],
+      "Configuración guardada correctamente.": [
+        "Configuración guardada correctamente."
+      ],
+      "Cargando configuración…": [
+        "Cargando configuración…"
+      ],
+      "Cabeceras": [
+        "Cabeceras"
+      ],
+      "Obliga a los navegadores a conectarse solo por HTTPS.": [
+        "Obliga a los navegadores a conectarse solo mediante HTTPS."
+      ],
+      "Activar HSTS": [
+        "Activar HSTS"
+      ],
+      "Max-Age (segundos)": [
+        "Max-Age (segundos)"
+      ],
+      "Incluir subdominios": [
+        "Incluir subdominios"
+      ],
+      "Añadir directiva preload": [
+        "Añadir directiva preload"
+      ],
+      "Otras cabeceras de seguridad": [
+        "Otras cabeceras de seguridad"
+      ],
+      "Enviar nosniff": [
+        "Enviar nosniff"
+      ],
+      "Activar Referrer-Policy": [
+        "Activar Referrer-Policy"
+      ],
+      "Política": [
+        "Política"
+      ],
+      "Activar X-Frame-Options": [
+        "Activar X-Frame-Options"
+      ],
+      "Modo": [
+        "Modo"
+      ],
+      "Activar Permissions-Policy": [
+        "Activar Permissions-Policy"
+      ],
+      "Valor de la política": [
+        "Valor de la política"
+      ],
+      "Activar cabecera": [
+        "Activar cabecera"
+      ],
+      "Valor": [
+        "Valor"
+      ],
+      "Controla qué recursos puede cargar el navegador.": [
+        "Controla qué recursos puede cargar el navegador."
+      ],
+      "Activar Content-Security-Policy": [
+        "Activar Content-Security-Policy"
+      ],
+      "Solo modo Report-Only": [
+        "Solo modo Report-Only"
+      ],
+      "Emergency fail-safe": [
+        "Mecanismo de seguridad de emergencia"
+      ],
+      "Auto-detectar fuentes desde HTML": [
+        "Detectar fuentes automáticamente desde HTML"
+      ],
+      "Enviar reportes al collector interno": [
+        "Enviar informes al colector interno"
+      ],
+      "Directivas CSP": [
+        "Directivas CSP"
+      ],
+      "Añadir upgrade-insecure-requests": [
+        "Añadir upgrade-insecure-requests"
+      ],
+      "Guardar configuración": [
+        "Guardar configuración"
+      ]
+    }
+  }
+}
