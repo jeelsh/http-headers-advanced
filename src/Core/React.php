@@ -168,7 +168,7 @@ class React
             return;
         }
 
-        $configPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'React.php';
+        $configPath = dirname(dirname(__DIR__)) . DIRECTORY_SEPARATOR . 'Config' . DIRECTORY_SEPARATOR . 'React.php';
         
         if (file_exists($configPath)) {
             self::$config = require $configPath;
@@ -567,7 +567,7 @@ class React
     {
         $currentUser = wp_get_current_user();
         $appKey = self::getAppKey();
-        $objectName = 'antonella_react_' . $appKey;
+        $objectName = 'antonella_react_' . str_replace('-', '_', $appKey);
         
         wp_localize_script(
             $handle,
