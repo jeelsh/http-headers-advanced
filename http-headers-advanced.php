@@ -12,11 +12,13 @@ namespace JEELSHHA;
  * Text Domain:       http-headers-advanced
  * Domain Path:       /languages
  * Requires at least: 5.0
- * Tested up to:      6.7
+ * Tested up to:      7.0
  * Requires PHP:      7.4
  */
 
-defined('ABSPATH') or die(exit());
+if ( ! defined( 'ABSPATH' ) ) {
+	exit;
+}
 
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links) {
     $settings_url = admin_url('options-general.php?page=http-headers-advanced');
@@ -28,8 +30,8 @@ add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links)
 });
 
 if (file_exists(__DIR__ . '/vendor/autoload.php')) {
-    $loader = require __DIR__ . '/vendor/autoload.php';
-    $antonella = new Start;
+    require __DIR__ . '/vendor/autoload.php';
+    new Start;
 } else {
     add_action('admin_notices', function() {
         echo '<div class="notice notice-error"><p><strong>HTTP Headers Advanced:</strong> Dependencies missing. Please run <code>composer install</code> in the plugin directory.</p></div>';
