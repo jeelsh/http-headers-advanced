@@ -14,19 +14,19 @@ class ToolsController
      */
     public static function registerRoutes()
     {
-        \register_rest_route('http-headers-advanced/v1', '/tools/export', [
+        \register_rest_route('jeelsh-http-headers/v1', '/tools/export', [
             'methods'             => \WP_REST_Server::READABLE,
             'callback'            => [__CLASS__, 'exportSettings'],
             'permission_callback' => [__CLASS__, 'permissionCheck'],
         ]);
 
-        \register_rest_route('http-headers-advanced/v1', '/tools/import', [
+        \register_rest_route('jeelsh-http-headers/v1', '/tools/import', [
             'methods'             => \WP_REST_Server::CREATABLE,
             'callback'            => [__CLASS__, 'importSettings'],
             'permission_callback' => [__CLASS__, 'permissionCheck'],
         ]);
 
-        \register_rest_route('http-headers-advanced/v1', '/tools/reset', [
+        \register_rest_route('jeelsh-http-headers/v1', '/tools/reset', [
             'methods'             => \WP_REST_Server::CREATABLE,
             'callback'            => [__CLASS__, 'resetSettings'],
             'permission_callback' => [__CLASS__, 'permissionCheck'],
@@ -57,14 +57,14 @@ class ToolsController
         $data = $request->get_json_params();
 
         if (empty($data) || !\is_array($data)) {
-            return new \WP_REST_Response(['message' => \__('No data provided.', 'http-headers-advanced')], 400);
+            return new \WP_REST_Response(['message' => \__('No data provided.', 'jeelsh-http-headers')], 400);
         }
 
         $validation = Tools::validate($data);
 
         if (!$validation['valid']) {
             return new \WP_REST_Response([
-                'message' => \__('Validation failed.', 'http-headers-advanced'),
+                'message' => \__('Validation failed.', 'jeelsh-http-headers'),
                 'errors'  => $validation['errors'],
             ], 422);
         }
@@ -72,7 +72,7 @@ class ToolsController
         Tools::import($data['settings']);
 
         return new \WP_REST_Response([
-            'message' => \__('Settings imported successfully.', 'http-headers-advanced'),
+            'message' => \__('Settings imported successfully.', 'jeelsh-http-headers'),
         ], 200);
     }
 
@@ -84,7 +84,7 @@ class ToolsController
         Tools::reset();
 
         return new \WP_REST_Response([
-            'message' => \__('Settings reset to defaults.', 'http-headers-advanced'),
+            'message' => \__('Settings reset to defaults.', 'jeelsh-http-headers'),
         ], 200);
     }
 }

@@ -9,7 +9,7 @@ defined('ABSPATH') or die();
 
 class Tools
 {
-    const PLUGIN_SLUG = 'http-headers-advanced';
+    const PLUGIN_SLUG = 'jeelsh-http-headers';
     const PLUGIN_VERSION = '1.0.0';
 
     /**

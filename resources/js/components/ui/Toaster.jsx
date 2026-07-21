@@ -24,7 +24,7 @@ export default function Toaster() {
             type="button"
             onClick={() => dismiss(toast.id)}
             className="absolute top-3 right-3 rounded-sm opacity-70 hover:opacity-100 focus:outline-none"
-            aria-label={__('Close', 'http-headers-advanced')}
+            aria-label={__('Close', 'jeelsh-http-headers')}
           >
             <X className="h-4 w-4" />
           </button>

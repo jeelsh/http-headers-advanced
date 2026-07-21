@@ -1,11 +1,11 @@
 {
   "translation-revision-date": "YEAR-MO-DA HO:MI+ZONE",
   "generator": "WP-CLI/2.12.0",
-  "domain": "http-headers-advanced",
+  "domain": "jeelsh-http-headers",
   "locale_data": {
-    "http-headers-advanced": {
+    "jeelsh-http-headers": {
       "": {
-        "domain": "http-headers-advanced",
+        "domain": "jeelsh-http-headers",
         "lang": "es_ES",
         "plural-forms": "nplurals=2; plural=(n != 1);"
       },
@@ -162,8 +162,8 @@
       "Component not found": [
         "Componente no encontrado"
       ],
-      "Campo \"plugin\" inválido o ausente. Se esperaba \"http-headers-advanced\".": [
-        "El campo \"plugin\" no es válido o no existe. Se esperaba \"http-headers-advanced\"."
+      "Campo \"plugin\" inválido o ausente. Se esperaba \"jeelsh-http-headers\".": [
+        "El campo \"plugin\" no es válido o no existe. Se esperaba \"jeelsh-http-headers\"."
       ],
       "Campo \"settings\" ausente o inválido.": [
         "El campo \"settings\" no existe o no es válido."

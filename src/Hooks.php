@@ -30,7 +30,7 @@ class Hooks
      */
     public function registrer()
     {
-        $plugin_file = dirname(__DIR__) . '/http-headers-advanced.php';
+        $plugin_file = dirname(__DIR__) . '/jeelsh-http-headers.php';
         register_activation_hook($plugin_file, array(__NAMESPACE__ . '\Install', 'index'));
         register_deactivation_hook($plugin_file, array(__NAMESPACE__ . '\Desactivate', 'index'));
         register_uninstall_hook($plugin_file, __NAMESPACE__ . '\Uninstall::index');

@@ -4,10 +4,10 @@ import { LayoutDashboard, Settings, Stethoscope, Wrench } from "lucide-react";
 import { __ } from "@/i18n";
 
 const navItems = [
-  { id: "dashboard", label: __("Dashboard", "http-headers-advanced"), icon: LayoutDashboard },
-  { id: "settings", label: __("Settings", "http-headers-advanced"), icon: Settings },
-  { id: "diagnostics", label: __("Diagnostics", "http-headers-advanced"), icon: Stethoscope },
-  { id: "tools", label: __("Tools", "http-headers-advanced"), icon: Wrench },
+  { id: "dashboard", label: __("Dashboard", "jeelsh-http-headers"), icon: LayoutDashboard },
+  { id: "settings", label: __("Settings", "jeelsh-http-headers"), icon: Settings },
+  { id: "diagnostics", label: __("Diagnostics", "jeelsh-http-headers"), icon: Stethoscope },
+  { id: "tools", label: __("Tools", "jeelsh-http-headers"), icon: Wrench },
 ];
 
 export default function LeftSidebar({ activeTab, onChange, isDark, assetBaseUrl }) {

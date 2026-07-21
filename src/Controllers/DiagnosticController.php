@@ -15,7 +15,7 @@ class DiagnosticController
      */
     public static function registerRoutes()
     {
-        \register_rest_route('http-headers-advanced/v1', '/diagnostics', [
+        \register_rest_route('jeelsh-http-headers/v1', '/diagnostics', [
             'methods'             => \WP_REST_Server::READABLE,
             'callback'            => [__CLASS__, 'getDiagnostics'],
             'permission_callback' => [__CLASS__, 'permissionCheck'],

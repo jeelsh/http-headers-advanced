@@ -5,7 +5,7 @@ import { fileURLToPath } from 'node:url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 const LANGUAGES_DIR = join(__dirname, '../languages');
-const TEXT_DOMAIN = 'http-headers-advanced';
+const TEXT_DOMAIN = 'jeelsh-http-headers';
 const APP_KEY = '04sewsgb';
 const SCRIPT_HANDLE = `antonella-react-app-${APP_KEY}`;
 const HASHED_JSON_PATTERN = new RegExp(`^${TEXT_DOMAIN}-(\\w+)-([a-f0-9]{32})\\.json$`, 'i');

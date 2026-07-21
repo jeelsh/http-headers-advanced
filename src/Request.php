@@ -39,7 +39,7 @@ class Request
         $nonce_value = isset($_POST[$nonce_name]) ? sanitize_text_field(wp_unslash($_POST[$nonce_name])) : '';
         
         if (empty($nonce_value) || !wp_verify_nonce($nonce_value, $action)) {
-            die(esc_html(__('Security check failed', 'http-headers-advanced')));
+            die(esc_html(__('Security check failed', 'jeelsh-http-headers')));
         }
     }
 

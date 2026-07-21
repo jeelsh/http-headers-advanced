@@ -264,7 +264,7 @@ class React
             true
         );
 
-        wp_set_script_translations($appHandle, 'http-headers-advanced', dirname(dirname(__DIR__)) . '/languages');
+        wp_set_script_translations($appHandle, 'jeelsh-http-headers', dirname(dirname(__DIR__)) . '/languages');
 
         if (function_exists('wp_script_add_data')) {
             wp_script_add_data($appHandle, 'type', 'module');
@@ -327,7 +327,7 @@ class React
                 true
             );
             
-            wp_set_script_translations($appHandle, 'http-headers-advanced', dirname(dirname(__DIR__)) . '/languages');
+            wp_set_script_translations($appHandle, 'jeelsh-http-headers', dirname(dirname(__DIR__)) . '/languages');
 
             self::localizeScriptData($appHandle);
         }

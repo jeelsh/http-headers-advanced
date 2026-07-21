@@ -272,7 +272,7 @@ class Install
     {
         if (!empty(self::$errors)) {
             echo '<div class="notice notice-error"><p>';
-            echo esc_html(__('Antonella Framework installation encountered errors. Check error logs for details.', 'http-headers-advanced'));
+            echo esc_html(__('Antonella Framework installation encountered errors. Check error logs for details.', 'jeelsh-http-headers'));
             echo '</p></div>';
         }
     }

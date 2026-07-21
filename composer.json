@@ -1,5 +1,5 @@
 {
-    "name":"jeelsh/http-headers-advanced",
+    "name":"jeelsh/jeelsh-http-headers",
     "version":"1.0.0",
     "keywords": ["framework", "wordpress", "plugins"],
     "prefer-stable": true,

@@ -1,5 +1,5 @@
 {
-    "name": "http-headers-advanced",
+    "name": "jeelsh-http-headers",
     "version": "1.0.0",
     "description": "WordPress plugin with React integration",
     "type": "module",
@@ -7,7 +7,7 @@
         "dev": "vite",
         "build": "vite build",
         "preview": "vite preview",
-        "i18n": "wp i18n make-pot . languages/http-headers-advanced.pot --exclude=node_modules,vendor,assets/dist,storage/cache",
+        "i18n": "wp i18n make-pot . languages/jeelsh-http-headers.pot --exclude=node_modules,vendor,assets/dist,storage/cache",
         "i18n:json": "wp i18n make-json languages/ --extensions=jsx --no-purge",
         "i18n:mo": "wp i18n make-mo languages/",
         "i18n:update": "npm run i18n:json && node scripts/update-translations.js"

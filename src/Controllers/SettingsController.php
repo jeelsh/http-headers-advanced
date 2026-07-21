@@ -35,7 +35,7 @@ class SettingsController
      */
     public static function registerRoutes()
     {
-        \register_rest_route('http-headers-advanced/v1', '/settings', [
+        \register_rest_route('jeelsh-http-headers/v1', '/settings', [
             [
                 'methods'             => \WP_REST_Server::READABLE,
                 'callback'            => [__CLASS__, 'getSettings'],
@@ -74,7 +74,7 @@ class SettingsController
         $data = $request->get_json_params();
 
         if (empty($data) || !\is_array($data)) {
-            return new \WP_REST_Response(['message' => \__('No data provided.', 'http-headers-advanced')], 400);
+            return new \WP_REST_Response(['message' => \__('No data provided.', 'jeelsh-http-headers')], 400);
         }
 
         try {
@@ -89,7 +89,7 @@ class SettingsController
         HeaderDispatcher::apply();
 
         return new \WP_REST_Response([
-            'message'  => \__('Settings saved successfully.', 'http-headers-advanced'),
+            'message'  => \__('Settings saved successfully.', 'jeelsh-http-headers'),
             'settings' => $headers->toArray(),
         ], 200);
     }
@@ -100,14 +100,14 @@ class SettingsController
     public static function settingsPage()
     {
         if (!\current_user_can('manage_options')) {
-            \wp_die(\esc_html(\__('You do not have sufficient permissions to access this page.', 'http-headers-advanced')));
+            \wp_die(\esc_html(\__('You do not have sufficient permissions to access this page.', 'jeelsh-http-headers')));
         }
 
         $assetBaseUrl = self::assetBaseUrl();
 
         $pageData = [
-            'title'        => \__('HTTP Headers Advanced', 'http-headers-advanced'),
-            'message'      => \__('Manage advanced HTTP headers for your WordPress site.', 'http-headers-advanced'),
+            'title'        => \__('HTTP Headers Advanced', 'jeelsh-http-headers'),
+            'message'      => \__('Manage advanced HTTP headers for your WordPress site.', 'jeelsh-http-headers'),
             'assetBaseUrl' => $assetBaseUrl,
         ];
 
@@ -126,7 +126,7 @@ class SettingsController
             return \rtrim(React::getConfig('vite_server', 'http://localhost:3000'), '/');
         }
 
-        $pluginUrl = \plugin_dir_url(\dirname(\dirname(__DIR__)) . '/http-headers-advanced.php');
+        $pluginUrl = \plugin_dir_url(\dirname(\dirname(__DIR__)) . '/jeelsh-http-headers.php');
         $buildPath = React::getConfig('build_path', 'assets/dist');
 
         return \rtrim($pluginUrl . $buildPath, '/');

@@ -61,7 +61,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
   const { execute: saveSettings, loading: loadingSave } = useRest('/settings', {
     method: 'POST',
     onError: (err) => {
-      toast({ variant: 'destructive', title: __('Error al guardar', 'http-headers-advanced'), description: err.message, duration: null });
+      toast({ variant: 'destructive', title: __('Error al guardar', 'jeelsh-http-headers'), description: err.message, duration: null });
     },
   });
 
@@ -121,8 +121,8 @@ export default function Settings({ assetBaseUrl, isDark }) {
     if (hasErrors) {
       toast({
         variant: 'destructive',
-        title: __('Error en CSP', 'http-headers-advanced'),
-        description: __('Corrige los campos marcados en rojo antes de guardar.', 'http-headers-advanced'),
+        title: __('Error en CSP', 'jeelsh-http-headers'),
+        description: __('Corrige los campos marcados en rojo antes de guardar.', 'jeelsh-http-headers'),
         duration: null,
       });
       return;
@@ -133,7 +133,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
       return;
     }
 
-    toast({ variant: 'success', title: __('Guardado', 'http-headers-advanced'), description: __('Configuración guardada correctamente.', 'http-headers-advanced') });
+    toast({ variant: 'success', title: __('Guardado', 'jeelsh-http-headers'), description: __('Configuración guardada correctamente.', 'jeelsh-http-headers') });
     if (result?.settings) {
       setForm((prev) => ({ ...prev, ...result.settings }));
     }
@@ -143,7 +143,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
     return (
       <div className="flex items-center justify-center py-20">
         <Loader2 className="h-6 w-6 animate-spin text-muted-foreground" />
-        <span className="ml-2 text-muted-foreground">{__('Cargando configuración…', 'http-headers-advanced')}</span>
+        <span className="ml-2 text-muted-foreground">{__('Cargando configuración…', 'jeelsh-http-headers')}</span>
       </div>
     );
   }
@@ -156,7 +156,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
             <Lock className="h-4 w-4" /> HSTS
           </TabsTrigger>
           <TabsTrigger value="headers" className="gap-1.5">
-            <Globe className="h-4 w-4" /> {__('Cabeceras', 'http-headers-advanced')}
+            <Globe className="h-4 w-4" /> {__('Cabeceras', 'jeelsh-http-headers')}
           </TabsTrigger>
           <TabsTrigger value="csp" className="gap-1.5">
             <Shield className="h-4 w-4" /> CSP
@@ -168,31 +168,31 @@ export default function Settings({ assetBaseUrl, isDark }) {
           <Card>
             <CardHeader>
               <CardTitle>Strict-Transport-Security (HSTS)</CardTitle>
-              <CardDescription>{__('Obliga a los navegadores a conectarse solo por HTTPS.', 'http-headers-advanced')}</CardDescription>
+              <CardDescription>{__('Obliga a los navegadores a conectarse solo por HTTPS.', 'jeelsh-http-headers')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <FieldSwitch
                 id="hsts_enabled"
-                label={__('Activar HSTS', 'http-headers-advanced')}
+                label={__('Activar HSTS', 'jeelsh-http-headers')}
                 checked={form.hsts_enabled}
                 onChange={(v) => handleChange('hsts_enabled', v)}
               />
               <FieldInput
                 id="hsts_max_age"
-                label={__('Max-Age (segundos)', 'http-headers-advanced')}
+                label={__('Max-Age (segundos)', 'jeelsh-http-headers')}
                 type="number"
                 value={form.hsts_max_age}
                 onChange={(v) => handleChange('hsts_max_age', parseInt(v, 10) || 0)}
               />
               <FieldSwitch
                 id="hsts_include_subdomains"
-                label={__('Incluir subdominios', 'http-headers-advanced')}
+                label={__('Incluir subdominios', 'jeelsh-http-headers')}
                 checked={form.hsts_include_subdomains}
                 onChange={(v) => handleChange('hsts_include_subdomains', v)}
               />
               <FieldSwitch
                 id="hsts_preload"
-                label={__('Añadir directiva preload', 'http-headers-advanced')}
+                label={__('Añadir directiva preload', 'jeelsh-http-headers')}
                 checked={form.hsts_preload}
                 onChange={(v) => handleChange('hsts_preload', v)}
               />
@@ -204,7 +204,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
         <TabsContent value="headers">
           <Card>
             <CardHeader>
-              <CardTitle>{__('Otras cabeceras de seguridad', 'http-headers-advanced')}</CardTitle>
+              <CardTitle>{__('Otras cabeceras de seguridad', 'jeelsh-http-headers')}</CardTitle>
             </CardHeader>
             <CardContent className="space-y-6">
               {/* X-Content-Type-Options */}
@@ -212,7 +212,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
                 <h4 className="text-sm font-semibold">X-Content-Type-Options</h4>
                 <FieldSwitch
                   id="xcto_nosniff"
-                  label={__('Enviar nosniff', 'http-headers-advanced')}
+                  label={__('Enviar nosniff', 'jeelsh-http-headers')}
                   checked={form.xcto_nosniff}
                   onChange={(v) => handleChange('xcto_nosniff', v)}
                 />
@@ -225,14 +225,14 @@ export default function Settings({ assetBaseUrl, isDark }) {
                 <h4 className="text-sm font-semibold">Referrer-Policy</h4>
                 <FieldSwitch
                   id="referrer_policy_enabled"
-                  label={__('Activar Referrer-Policy', 'http-headers-advanced')}
+                  label={__('Activar Referrer-Policy', 'jeelsh-http-headers')}
                   checked={form.referrer_policy_enabled}
                   onChange={(v) => handleChange('referrer_policy_enabled', v)}
                 />
                 {form.referrer_policy_enabled && (
                   <FieldSelect
                     id="referrer_policy_value"
-                    label={__('Política', 'http-headers-advanced')}
+                    label={__('Política', 'jeelsh-http-headers')}
                     value={form.referrer_policy_value}
                     onChange={(v) => handleChange('referrer_policy_value', v)}
                     options={[
@@ -253,14 +253,14 @@ export default function Settings({ assetBaseUrl, isDark }) {
                 <h4 className="text-sm font-semibold">X-Frame-Options</h4>
                 <FieldSwitch
                   id="xfo_enabled"
-                  label={__('Activar X-Frame-Options', 'http-headers-advanced')}
+                  label={__('Activar X-Frame-Options', 'jeelsh-http-headers')}
                   checked={form.xfo_enabled}
                   onChange={(v) => handleChange('xfo_enabled', v)}
                 />
                 {form.xfo_enabled && (
                   <FieldSelect
                     id="xfo_value"
-                    label={__('Modo', 'http-headers-advanced')}
+                    label={__('Modo', 'jeelsh-http-headers')}
                     value={form.xfo_value}
                     onChange={(v) => handleChange('xfo_value', v)}
                     options={[
@@ -278,14 +278,14 @@ export default function Settings({ assetBaseUrl, isDark }) {
                 <h4 className="text-sm font-semibold">Permissions-Policy</h4>
                 <FieldSwitch
                   id="permissions_policy_enabled"
-                  label={__('Activar Permissions-Policy', 'http-headers-advanced')}
+                  label={__('Activar Permissions-Policy', 'jeelsh-http-headers')}
                   checked={form.permissions_policy_enabled}
                   onChange={(v) => handleChange('permissions_policy_enabled', v)}
                 />
                 {form.permissions_policy_enabled && (
                   <FieldTextarea
                     id="permissions_policy_value"
-                    label={__('Valor de la política', 'http-headers-advanced')}
+                    label={__('Valor de la política', 'jeelsh-http-headers')}
                     value={form.permissions_policy_value}
                     onChange={(v) => handleChange('permissions_policy_value', v)}
                   />
@@ -299,14 +299,14 @@ export default function Settings({ assetBaseUrl, isDark }) {
                 <h4 className="text-sm font-semibold">X-Permitted-Cross-Domain-Policies</h4>
                 <FieldSwitch
                   id="xpcdp_enabled"
-                  label={__('Activar cabecera', 'http-headers-advanced')}
+                  label={__('Activar cabecera', 'jeelsh-http-headers')}
                   checked={form.xpcdp_enabled}
                   onChange={(v) => handleChange('xpcdp_enabled', v)}
                 />
                 {form.xpcdp_enabled && (
                   <FieldSelect
                     id="xpcdp_value"
-                    label={__('Valor', 'http-headers-advanced')}
+                    label={__('Valor', 'jeelsh-http-headers')}
                     value={form.xpcdp_value}
                     onChange={(v) => handleChange('xpcdp_value', v)}
                     options={[
@@ -327,43 +327,43 @@ export default function Settings({ assetBaseUrl, isDark }) {
           <Card>
             <CardHeader>
               <CardTitle>Content-Security-Policy (CSP)</CardTitle>
-              <CardDescription>{__('Controla qué recursos puede cargar el navegador.', 'http-headers-advanced')}</CardDescription>
+              <CardDescription>{__('Controla qué recursos puede cargar el navegador.', 'jeelsh-http-headers')}</CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
               <FieldSwitch
                 id="csp_enabled"
-                label={__('Activar Content-Security-Policy', 'http-headers-advanced')}
+                label={__('Activar Content-Security-Policy', 'jeelsh-http-headers')}
                 checked={form.csp_enabled}
                 onChange={(v) => handleChange('csp_enabled', v)}
               />
               <FieldSwitch
                 id="csp_report_only"
-                label={__('Solo modo Report-Only', 'http-headers-advanced')}
+                label={__('Solo modo Report-Only', 'jeelsh-http-headers')}
                 checked={form.csp_report_only}
                 onChange={(v) => handleChange('csp_report_only', v)}
               />
               <FieldSwitch
                 id="csp_emergency_failsafe"
-                label={__('Emergency fail-safe', 'http-headers-advanced')}
+                label={__('Emergency fail-safe', 'jeelsh-http-headers')}
                 checked={form.csp_emergency_failsafe}
                 onChange={(v) => handleChange('csp_emergency_failsafe', v)}
               />
               <FieldSwitch
                 id="csp_auto_detect"
-                label={__('Auto-detectar fuentes desde HTML', 'http-headers-advanced')}
+                label={__('Auto-detectar fuentes desde HTML', 'jeelsh-http-headers')}
                 checked={form.csp_auto_detect}
                 onChange={(v) => handleChange('csp_auto_detect', v)}
               />
               <FieldSwitch
                 id="csp_report_collector"
-                label={__('Enviar reportes al collector interno', 'http-headers-advanced')}
+                label={__('Enviar reportes al collector interno', 'jeelsh-http-headers')}
                 checked={form.csp_report_collector}
                 onChange={(v) => handleChange('csp_report_collector', v)}
               />
 
               <Separator />
 
-              <h4 className="text-sm font-semibold">{__('Directivas CSP', 'http-headers-advanced')}</h4>
+              <h4 className="text-sm font-semibold">{__('Directivas CSP', 'jeelsh-http-headers')}</h4>
 
               <CspSourceField
                 id="csp_default_src"
@@ -470,7 +470,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
 
               <FieldSwitch
                 id="csp_upgrade_insecure"
-                label={__('Añadir upgrade-insecure-requests', 'http-headers-advanced')}
+                label={__('Añadir upgrade-insecure-requests', 'jeelsh-http-headers')}
                 checked={form.csp_upgrade_insecure}
                 onChange={(v) => handleChange('csp_upgrade_insecure', v)}
               />
@@ -483,7 +483,7 @@ export default function Settings({ assetBaseUrl, isDark }) {
       <div className="flex items-center gap-3">
         <Button onClick={handleSave} disabled={loadingSave} className="gap-2">
           {loadingSave ? <Loader2 className="h-4 w-4 animate-spin" /> : <Save className="h-4 w-4" />}
-          {__('Guardar configuración', 'http-headers-advanced')}
+          {__('Guardar configuración', 'jeelsh-http-headers')}
         </Button>
       </div>
     </div>

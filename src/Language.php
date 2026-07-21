@@ -50,7 +50,7 @@ class Language
         if (
             null !== $translations
             || false !== $file
-            || 'http-headers-advanced' !== $domain
+            || 'jeelsh-http-headers' !== $domain
             || 'antonella-react-app-' . \JEELSHHA\Core\React::getConfig('app_key') !== $handle
         ) {
             return $translations;

@@ -19,7 +19,7 @@ class Config
      * Language Option
      * define a unique word for translate call
      */
-    public $language_name = 'http-headers-advanced';
+    public $language_name = 'jeelsh-http-headers';
     /**
      * Plugin text prefix
      * define a unique word for this plugin
@@ -117,7 +117,7 @@ class Config
             'path' => ['option'],
             'name' => 'HTTP Headers Advanced',
             'function' => __NAMESPACE__ . "\Controllers\SettingsController::settingsPage",
-            'slug' => 'http-headers-advanced',
+            'slug' => 'jeelsh-http-headers',
         ]
     ];
 

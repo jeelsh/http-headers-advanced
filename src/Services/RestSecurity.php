@@ -20,7 +20,7 @@ class RestSecurity
         if (empty($nonce) || !\wp_verify_nonce($nonce, $action)) {
             return new \WP_Error(
                 'rest_forbidden',
-                \__('Invalid or missing nonce. Please refresh the page.', 'http-headers-advanced'),
+                \__('Invalid or missing nonce. Please refresh the page.', 'jeelsh-http-headers'),
                 ['status' => 403]
             );
         }
@@ -39,7 +39,7 @@ class RestSecurity
         if (!\current_user_can('manage_options')) {
             return new \WP_Error(
                 'rest_forbidden',
-                \__('You do not have permission to perform this action.', 'http-headers-advanced'),
+                \__('You do not have permission to perform this action.', 'jeelsh-http-headers'),
                 ['status' => 403]
             );
         }

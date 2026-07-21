@@ -181,7 +181,7 @@ class HeaderValidator
                     \esc_html(
                         \sprintf(
                             /* translators: 1: CSP field name, 2: error message */
-                            \__('%1$s: %2$s', 'http-headers-advanced'),
+                            \__('%1$s: %2$s', 'jeelsh-http-headers'),
                             $field ? $field : 'CSP source list',
                             $tokenResult['error']
                         )
@@ -212,7 +212,7 @@ class HeaderValidator
         $hasQuotes = ($first === "'" || $first === '"') && $first === $last && \strlen($token) > 1;
 
         if (!$hasQuotes && ($first === "'" || $first === '"' || $last === "'" || $last === '"')) {
-            return ['corrected' => $token, 'error' => \__('Unmatched quotes in CSP token.', 'http-headers-advanced')];
+            return ['corrected' => $token, 'error' => \__('Unmatched quotes in CSP token.', 'jeelsh-http-headers')];
         }
 
         $inner = $hasQuotes ? \substr($token, 1, -1) : $token;
@@ -237,7 +237,7 @@ class HeaderValidator
                     'corrected' => $inner,
                     'error' => \sprintf(
                         /* translators: %s: token value */
-                        \__('Invalid CSP source expression: %s', 'http-headers-advanced'),
+                        \__('Invalid CSP source expression: %s', 'jeelsh-http-headers'),
                         $token
                     ),
                 ];
@@ -250,7 +250,7 @@ class HeaderValidator
                 'corrected' => $token,
                 'error' => \sprintf(
                     /* translators: %s: token value */
-                    \__('Invalid CSP source expression: %s', 'http-headers-advanced'),
+                    \__('Invalid CSP source expression: %s', 'jeelsh-http-headers'),
                     $token
                 ),
             ];
@@ -310,7 +310,7 @@ class HeaderValidator
                 \esc_html(
                     \sprintf(
                         /* translators: %s: field name */
-                        \__('%s has unmatched quotes.', 'http-headers-advanced'),
+                        \__('%s has unmatched quotes.', 'jeelsh-http-headers'),
                         $field
                     )
                 )
@@ -326,7 +326,7 @@ class HeaderValidator
                 \esc_html(
                     \sprintf(
                         /* translators: %s: field name */
-                        \__('%s must be a valid https URL.', 'http-headers-advanced'),
+                        \__('%s must be a valid https URL.', 'jeelsh-http-headers'),
                         $field
                     )
                 )
