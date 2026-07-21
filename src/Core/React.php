@@ -339,8 +339,14 @@ class React
         $isDev = self::getConfig('app_env', 'production') === 'develop';
         $viteServer = self::getConfig('vite_server', 'http://localhost:3000');
         
+        $scriptHandle = 'antonella-react-render-' . self::getAppKey();
+
+        wp_register_script($scriptHandle, false, [], false, false);
+        wp_enqueue_script($scriptHandle);
+
+        ob_start();
         ?>
-        <script>
+
             if (!document.querySelector('meta[name="antonella-react-container"]')) {
                 const meta = document.createElement('meta');
                 meta.name = 'antonella-react-container';
@@ -391,10 +397,15 @@ class React
                 });
             })();
             <?php endif; ?>
-        </script>
-        <?php self::injectIsolationStyles($containerId); ?>
-        <?php self::inject(); ?>
+
         <?php
+        $inlineScript = trim(ob_get_clean());
+
+        wp_add_inline_script($scriptHandle, $inlineScript);
+        wp_print_scripts([$scriptHandle]);
+
+        self::injectIsolationStyles($containerId);
+        self::inject();
     }
 
     protected static function injectIsolationStyles(string $containerId): void
@@ -466,8 +477,12 @@ class React
 {$sel} table { border-collapse: collapse; }";
         }
 
-        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
-        echo '<style id="antonella-isolation-' . esc_attr($containerId) . '">' . $css . "\n</style>\n";
+        $styleHandle = 'antonella-react-isolation-' . sanitize_key($containerId);
+
+        wp_register_style($styleHandle, false, [], false);
+        wp_enqueue_style($styleHandle);
+        wp_add_inline_style($styleHandle, $css);
+        wp_print_styles([$styleHandle]);
     }
 
     public static function init()
