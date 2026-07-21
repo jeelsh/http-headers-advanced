@@ -43,7 +43,7 @@ wordpress/
 *.zip
 *.tar.gz
 *.rar
-http-headers-advanced-for-wp.zip
+jeelsh-http-headers-for-wp.zip
 
 # Archivos del sistema
 .DS_Store

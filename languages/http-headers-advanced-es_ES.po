@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: HTTP Headers Advanced 1.0.0\n"
-"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/http-headers-advanced\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/jeelsh-http-headers\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -14,31 +14,31 @@ msgstr ""
 "Language: es_ES\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: WP-CLI 2.12.0\n"
-"X-Domain: http-headers-advanced\n"
+"X-Domain: jeelsh-http-headers\n"
 
 #. Plugin Name of the plugin
-#: http-headers-advanced.php
+#: jeelsh-http-headers.php
 #: src/Controllers/SettingsController.php:109
 msgid "HTTP Headers Advanced"
 msgstr "HTTP Headers Advanced"
 
 #. Plugin URI of the plugin
-#: http-headers-advanced.php
+#: jeelsh-http-headers.php
 msgid "https://github.com/jeelsh/http-headers-advanced"
 msgstr "https://github.com/jeelsh/http-headers-advanced"
 
 #. Description of the plugin
-#: http-headers-advanced.php
+#: jeelsh-http-headers.php
 msgid "Advanced HTTP headers management for WordPress."
 msgstr "Gestión avanzada de cabeceras HTTP para WordPress."
 
 #. Author of the plugin
-#: http-headers-advanced.php
+#: jeelsh-http-headers.php
 msgid "Jeelsh"
 msgstr "Jeelsh"
 
 #. Author URI of the plugin
-#: http-headers-advanced.php
+#: jeelsh-http-headers.php
 msgid "https://github.com/jeelsh"
 msgstr "https://github.com/jeelsh"
 
@@ -471,8 +471,8 @@ msgid "Guardar configuración"
 msgstr "Guardar configuración"
 
 #: resources/js/Pages/Tools.jsx:61
-msgid "Campo \"plugin\" inválido o ausente. Se esperaba \"http-headers-advanced\"."
-msgstr "El campo \"plugin\" no es válido o no existe. Se esperaba \"http-headers-advanced\"."
+msgid "Campo \"plugin\" inválido o ausente. Se esperaba \"jeelsh-http-headers\"."
+msgstr "El campo \"plugin\" no es válido o no existe. Se esperaba \"jeelsh-http-headers\"."
 
 #: resources/js/Pages/Tools.jsx:66
 msgid "Campo \"settings\" ausente o inválido."

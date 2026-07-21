@@ -31,10 +31,13 @@ class Antonella
         '.phpcs.xml',
         'docker-compose.yaml',
         'docker',
-        'components.json',
         'jsconfig.json',
         'pnpm-lock.yaml',
-        'pnpm-workspace.yaml'
+        'pnpm-workspace.yaml',
+        'languages/jeelsh-http-headers-en_US.mo',
+        'languages/jeelsh-http-headers-en_US.po',
+        'languages/jeelsh-http-headers-es_ES.mo',
+        'languages/jeelsh-http-headers-es_ES.po'
     ];
 
     protected $base_dirs_to_exclude = [
@@ -61,7 +64,7 @@ class Antonella
         'phar-io',
         'myclabs',
         'symfony/console',
-        'http-headers-advanced'
+        'jeelsh-http-headers'
     ];
 
     protected $testdir = 'wp-test';
@@ -271,7 +274,7 @@ class Antonella
      */
     public function updateProjectFiles()
     {
-        $oldFile = "http-headers-advanced.php";
+        $oldFile = "jeelsh-http-headers.php";
         $newFile = basename($this->dir) . '.php';
 
         if (file_exists($oldFile)) {
@@ -461,7 +464,7 @@ class Antonella
 
         // Update main plugin file
         $this->updateFileContent(
-            $this->dir . DIRECTORY_SEPARATOR . "http-headers-advanced.php",
+            $this->dir . DIRECTORY_SEPARATOR . "jeelsh-http-headers.php",
             $currentNamespace,
             $newNamespace
         );
@@ -927,7 +930,7 @@ JSX;
     private function removeModel()
     {
         $this->showInfo("Removing WordPress Eloquent Models...");
-        exec('composer remove http-headers-advanced/wordpress-eloquent-models');
+        exec('composer remove jeelsh-http-headers/wordpress-eloquent-models');
         $this->showSuccess("WordPress Eloquent Models removed successfully!");
     }
 
@@ -1105,7 +1108,7 @@ JSX;
         }
 
         echo "\n";
-        $this->showInfo("📦 Installing http-headers-advanced/wordpress-eloquent-models via Composer...");
+        $this->showInfo("📦 Installing jeelsh-http-headers/wordpress-eloquent-models via Composer...");
 
         // Simple progress indicator
         echo "Installing";
@@ -1115,7 +1118,7 @@ JSX;
         }
         echo "\n";
 
-        exec('composer require http-headers-advanced/wordpress-eloquent-models 2>&1', $composerOutput, $returnCode);
+        exec('composer require jeelsh-http-headers/wordpress-eloquent-models 2>&1', $composerOutput, $returnCode);
 
         if ($returnCode === 0) {
             $this->showSuccess("✅ WordPress Eloquent Models successfully installed!");
@@ -1123,7 +1126,7 @@ JSX;
             $this->showInfo("💡 Tip: Use models like User, Post, Comment, etc. with Eloquent syntax");
         } else {
             $this->showError("❌ Installation failed. Please check your composer configuration.");
-            $this->showInfo("💡 Make sure the package http-headers-advanced/wordpress-eloquent-models exists");
+            $this->showInfo("💡 Make sure the package jeelsh-http-headers/wordpress-eloquent-models exists");
             $this->showInfo("Composer output:");
             foreach ($composerOutput as $line) {
                 echo "  $line\n";

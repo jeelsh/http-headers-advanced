@@ -118,10 +118,10 @@ echo "✅ Plugins por defecto eliminados"
 
 # Activar el framework Antonella (si existe)
 echo "🔌 Verificando Antonella Framework..."
-if wp plugin list --name=http-headers-advanced --allow-root --path=/var/www/html --format=count 2>/dev/null | grep -q "1"; then
-    wp plugin activate http-headers-advanced --allow-root --path=/var/www/html 2>/dev/null && echo "✅ Antonella Framework activado" || echo "⚠️  No se pudo activar http-headers-advanced"
+if wp plugin list --name=jeelsh-http-headers --allow-root --path=/var/www/html --format=count 2>/dev/null | grep -q "1"; then
+    wp plugin activate jeelsh-http-headers --allow-root --path=/var/www/html 2>/dev/null && echo "✅ Antonella Framework activado" || echo "⚠️  No se pudo activar jeelsh-http-headers"
 else
-    echo "ℹ️  Plugin http-headers-advanced no encontrado (se activará cuando esté disponible)"
+    echo "ℹ️  Plugin jeelsh-http-headers no encontrado (se activará cuando esté disponible)"
 fi
 
 # Instalar y activar Plugin Check

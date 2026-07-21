@@ -45,7 +45,7 @@ function App({ component, props }) {
         }}
       >
         <p>
-          ⚠️ {__('Component not found', 'http-headers-advanced')}{component ? `: ${component}` : ''}
+          ⚠️ {__('Component not found', 'jeelsh-http-headers')}{component ? `: ${component}` : ''}
         </p>
       </div>
     );

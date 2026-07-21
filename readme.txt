@@ -24,7 +24,7 @@ The plugin source code and build tooling are maintained at https://github.com/je
 
 == Installation ==
 
-1. Upload the plugin files to the `/wp-content/plugins/http-headers-advanced` directory, or install the plugin through the WordPress Plugins screen.
+1. Upload the plugin files to the `/wp-content/plugins/jeelsh-http-headers` directory, or install the plugin through the WordPress Plugins screen.
 2. Activate the plugin through the Plugins screen in WordPress.
 3. Open HTTP Headers Advanced from the WordPress administration menu to configure your headers.
 

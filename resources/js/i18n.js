@@ -1,6 +1,6 @@
 import { __ as wp__, _x as wpX, _n as wpN, _nx as wpNx, sprintf as wpSprintf } from '@wordpress/i18n';
 
-const DEFAULT_DOMAIN = 'http-headers-advanced';
+const DEFAULT_DOMAIN = 'jeelsh-http-headers';
 
 export const __ = (text, domain = DEFAULT_DOMAIN) => wp__(text, domain);
 export const _x = (text, context, domain = DEFAULT_DOMAIN) => wpX(text, context, domain);

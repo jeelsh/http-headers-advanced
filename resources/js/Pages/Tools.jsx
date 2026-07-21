@@ -40,7 +40,7 @@ export default function Tools() {
     const url = URL.createObjectURL(blob);
     const a = document.createElement('a');
     a.href = url;
-    a.download = `http-headers-advanced-export-${new Date().toISOString().slice(0, 10)}.json`;
+    a.download = `jeelsh-http-headers-export-${new Date().toISOString().slice(0, 10)}.json`;
     document.body.appendChild(a);
     a.click();
     document.body.removeChild(a);
@@ -57,21 +57,21 @@ export default function Tools() {
     try {
       const parsed = JSON.parse(text);
 
-      if (!parsed.plugin || parsed.plugin !== 'http-headers-advanced') {
-        setValidation({ valid: false, message: __('Campo "plugin" inválido o ausente. Se esperaba "http-headers-advanced".', 'http-headers-advanced') });
+      if (!parsed.plugin || parsed.plugin !== 'jeelsh-http-headers') {
+        setValidation({ valid: false, message: __('Campo "plugin" inválido o ausente. Se esperaba "jeelsh-http-headers".', 'jeelsh-http-headers') });
         return;
       }
 
       if (!parsed.settings || typeof parsed.settings !== 'object') {
-        setValidation({ valid: false, message: __('Campo "settings" ausente o inválido.', 'http-headers-advanced') });
+        setValidation({ valid: false, message: __('Campo "settings" ausente o inválido.', 'jeelsh-http-headers') });
         return;
       }
 
       const keyCount = Object.keys(parsed.settings).length;
       const source = parsed.site_url ? ` (de ${parsed.site_url})` : '';
-      setValidation({ valid: true, message: sprintf(__('JSON válido: %1$d configuraciones encontradas%2$s.', 'http-headers-advanced'), keyCount, source), data: parsed });
+      setValidation({ valid: true, message: sprintf(__('JSON válido: %1$d configuraciones encontradas%2$s.', 'jeelsh-http-headers'), keyCount, source), data: parsed });
     } catch {
-      setValidation({ valid: false, message: __('JSON inválido. Revisa el formato.', 'http-headers-advanced') });
+      setValidation({ valid: false, message: __('JSON inválido. Revisa el formato.', 'jeelsh-http-headers') });
     }
   };
 
@@ -103,11 +103,11 @@ export default function Tools() {
 
     const result = await doImport(validation.data);
     if (result) {
-      setImportStatus({ success: true, message: __('Configuración importada correctamente.', 'http-headers-advanced') });
+      setImportStatus({ success: true, message: __('Configuración importada correctamente.', 'jeelsh-http-headers') });
       setImportText('');
       setValidation(null);
     } else {
-      setImportStatus({ success: false, message: __('Error al importar la configuración.', 'http-headers-advanced') });
+      setImportStatus({ success: false, message: __('Error al importar la configuración.', 'jeelsh-http-headers') });
     }
 
     setTimeout(() => setImportStatus(null), 4000);
@@ -118,9 +118,9 @@ export default function Tools() {
     setResetOpen(false);
     const result = await doReset({});
     if (result) {
-      setImportStatus({ success: true, message: __('Configuración restablecida a los valores por defecto.', 'http-headers-advanced') });
+      setImportStatus({ success: true, message: __('Configuración restablecida a los valores por defecto.', 'jeelsh-http-headers') });
     } else {
-      setImportStatus({ success: false, message: __('Error al restablecer la configuración.', 'http-headers-advanced') });
+      setImportStatus({ success: false, message: __('Error al restablecer la configuración.', 'jeelsh-http-headers') });
     }
     setTimeout(() => setImportStatus(null), 4000);
   };
@@ -137,16 +137,16 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Download className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>{__('Export Settings', 'http-headers-advanced')}</CardTitle>
+            <CardTitle>{__('Export Settings', 'jeelsh-http-headers')}</CardTitle>
           </div>
           <CardDescription>
-            {__('Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio.', 'http-headers-advanced')}
+            {__('Descarga la configuración actual en formato JSON para respaldarla o transferirla a otro sitio.', 'jeelsh-http-headers')}
           </CardDescription>
         </CardHeader>
         <CardContent>
           <Button onClick={handleExport} disabled={exporting}>
             {exporting ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Download className="h-4 w-4 mr-2" />}
-            {__('Download Export File', 'http-headers-advanced')}
+            {__('Download Export File', 'jeelsh-http-headers')}
           </Button>
         </CardContent>
       </Card>
@@ -156,10 +156,10 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <Upload className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>{__('Import Settings', 'http-headers-advanced')}</CardTitle>
+            <CardTitle>{__('Import Settings', 'jeelsh-http-headers')}</CardTitle>
           </div>
           <CardDescription>
-            {__('Importa una configuración desde un archivo JSON exportado o pega el contenido directamente.', 'http-headers-advanced')}
+            {__('Importa una configuración desde un archivo JSON exportado o pega el contenido directamente.', 'jeelsh-http-headers')}
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-4">
@@ -176,12 +176,12 @@ export default function Tools() {
               onClick={() => fileInputRef.current?.click()}
             >
               <FileUp className="h-4 w-4 mr-2" />
-              {__('Seleccionar archivo JSON', 'http-headers-advanced')}
+              {__('Seleccionar archivo JSON', 'jeelsh-http-headers')}
             </Button>
           </div>
 
           <Textarea
-            placeholder={__('O pega aquí el contenido del archivo JSON...', 'http-headers-advanced')}
+            placeholder={__('O pega aquí el contenido del archivo JSON...', 'jeelsh-http-headers')}
             value={importText}
             onChange={handleTextChange}
             className="font-mono text-xs min-h-32"
@@ -196,7 +196,7 @@ export default function Tools() {
             disabled={!validation?.valid || importing}
           >
             {importing ? <Loader2 className="h-4 w-4 animate-spin mr-2" /> : <Upload className="h-4 w-4 mr-2" />}
-            {__('Importar configuración', 'http-headers-advanced')}
+            {__('Importar configuración', 'jeelsh-http-headers')}
           </Button>
         </CardContent>
       </Card>
@@ -206,10 +206,10 @@ export default function Tools() {
         <CardHeader>
           <div className="flex items-center gap-2">
             <RotateCcw className="h-5 w-5 text-muted-foreground" />
-            <CardTitle>{__('Reset Configuration', 'http-headers-advanced')}</CardTitle>
+            <CardTitle>{__('Reset Configuration', 'jeelsh-http-headers')}</CardTitle>
           </div>
           <CardDescription>
-            {__('Restaura toda la configuración a los valores por defecto de instalación.', 'http-headers-advanced')}
+            {__('Restaura toda la configuración a los valores por defecto de instalación.', 'jeelsh-http-headers')}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -219,21 +219,21 @@ export default function Tools() {
               disabled={resetting}
             >
               {resetting ? <Loader2 className="h-4 w-4 animate-spin" /> : <RotateCcw className="h-4 w-4" />}
-              {__('Reset to Defaults', 'http-headers-advanced')}
+              {__('Reset to Defaults', 'jeelsh-http-headers')}
             </PopoverTrigger>
             <PopoverContent className="w-72" align="start">
               <div className="space-y-3">
-                <p className="text-sm font-medium">{__('¿Estás seguro?', 'http-headers-advanced')}</p>
+                <p className="text-sm font-medium">{__('¿Estás seguro?', 'jeelsh-http-headers')}</p>
                 <p className="text-sm text-muted-foreground">
-                  {__('Se restaurará la configuración de instalación. Esta acción no se puede deshacer.', 'http-headers-advanced')}
-                  {' '}<a href="#" className="text-primary underline hover:text-primary/80" onClick={(e) => { e.preventDefault(); handleExport(); }}>{__('Descarga backup de configuración', 'http-headers-advanced')}</a>.
+                  {__('Se restaurará la configuración de instalación. Esta acción no se puede deshacer.', 'jeelsh-http-headers')}
+                  {' '}<a href="#" className="text-primary underline hover:text-primary/80" onClick={(e) => { e.preventDefault(); handleExport(); }}>{__('Descarga backup de configuración', 'jeelsh-http-headers')}</a>.
                 </p>
                 <div className="flex justify-end gap-2">
                   <Button variant="outline" size="sm" onClick={() => setResetOpen(false)}>
-                    {__('Cancelar', 'http-headers-advanced')}
+                    {__('Cancelar', 'jeelsh-http-headers')}
                   </Button>
                   <Button variant="destructive" size="sm" onClick={handleReset}>
-                    {__('Confirmar', 'http-headers-advanced')}
+                    {__('Confirmar', 'jeelsh-http-headers')}
                   </Button>
                 </div>
               </div>

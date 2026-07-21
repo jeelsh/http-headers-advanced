@@ -79,7 +79,7 @@ services:
         condition: service_healthy
     volumes:
       # Montar el framework como plugin
-      - ./:/var/www/html/wp-content/plugins/http-headers-advanced
+      - ./:/var/www/html/wp-content/plugins/jeelsh-http-headers
       # Persistir uploads y contenido
       - wordpress_data:/var/www/html
       # Logs de WordPress
@@ -137,7 +137,7 @@ services:
       dockerfile: docker/Dockerfile.wordpress
     container_name: http-headers-wpcli
     volumes:
-      - ./:/var/www/html/wp-content/plugins/http-headers-advanced
+      - ./:/var/www/html/wp-content/plugins/jeelsh-http-headers
       - wordpress_data:/var/www/html
     depends_on:
       wordpress:

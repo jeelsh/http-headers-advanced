@@ -41,9 +41,9 @@ export default function Dashboard({ assetBaseUrl, isDark, onTabChange }) {
   return (
     <div className="space-y-6">
       <div>
-        <h2 className="text-2xl font-bold tracking-tight text-white">{__('Dashboard', 'http-headers-advanced')}</h2>
+        <h2 className="text-2xl font-bold tracking-tight text-white">{__('Dashboard', 'jeelsh-http-headers')}</h2>
         <p className="text-muted-foreground">
-          {__('Resumen del estado de HTTP Headers Advanced.', 'http-headers-advanced')}
+          {__('Resumen del estado de HTTP Headers Advanced.', 'jeelsh-http-headers')}
         </p>
       </div>
       <DashedLine position="bottom" assetBaseUrl={assetBaseUrl} isDark={isDark} className="my-4" />
@@ -60,26 +60,26 @@ export default function Dashboard({ assetBaseUrl, isDark, onTabChange }) {
           <div className="grid gap-4 md:grid-cols-3">
             <StatCard
               icon={Shield}
-              label={__('Active Headers', 'http-headers-advanced')}
+              label={__('Active Headers', 'jeelsh-http-headers')}
               value={summary.configured_headers_count ?? 0}
-              description={__('Cabeceras HTTP configuradas y activas', 'http-headers-advanced')}
+              description={__('Cabeceras HTTP configuradas y activas', 'jeelsh-http-headers')}
             />
             <StatCard
               icon={Server}
-              label={__('Injection Method', 'http-headers-advanced')}
+              label={__('Injection Method', 'jeelsh-http-headers')}
               value={summary.injection_method === 'htaccess' ? '.htaccess' : 'PHP'}
-              description={summary.injection_method === 'htaccess' ? __('Inyección directa vía .htaccess', 'http-headers-advanced') : __('Inyección vía send_headers de PHP', 'http-headers-advanced')}
+              description={summary.injection_method === 'htaccess' ? __('Inyección directa vía .htaccess', 'jeelsh-http-headers') : __('Inyección vía send_headers de PHP', 'jeelsh-http-headers')}
             />
             <StatCard
               icon={Lock}
-              label={__('CSP Mode', 'http-headers-advanced')}
-              value={summary.csp_mode ?? __('Disabled', 'http-headers-advanced')}
+              label={__('CSP Mode', 'jeelsh-http-headers')}
+              value={summary.csp_mode ?? __('Disabled', 'jeelsh-http-headers')}
               description={
                 summary.csp_mode === 'Enforce'
-                  ? __('Content-Security-Policy activo en modo estricto', 'http-headers-advanced')
+                  ? __('Content-Security-Policy activo en modo estricto', 'jeelsh-http-headers')
                   : summary.csp_mode === 'Report-Only'
-                    ? __('CSP en modo reporte (no bloquea)', 'http-headers-advanced')
-                    : __('Content-Security-Policy deshabilitado', 'http-headers-advanced')
+                    ? __('CSP en modo reporte (no bloquea)', 'jeelsh-http-headers')
+                    : __('Content-Security-Policy deshabilitado', 'jeelsh-http-headers')
               }
             />
           </div>
@@ -90,22 +90,22 @@ export default function Dashboard({ assetBaseUrl, isDark, onTabChange }) {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <Globe className="h-5 w-5 text-muted-foreground" />
-                  <CardTitle className="text-base">{__('Entorno', 'http-headers-advanced')}</CardTitle>
+                  <CardTitle className="text-base">{__('Entorno', 'jeelsh-http-headers')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent className="space-y-2 text-sm">
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">{__('Sitio', 'http-headers-advanced')}</span>
+                  <span className="text-muted-foreground">{__('Sitio', 'jeelsh-http-headers')}</span>
                   <span className="font-medium truncate ml-4">{env.site_url}</span>
                 </div>
                 <div className="flex justify-between">
                   <span className="text-muted-foreground">HTTPS</span>
                   <span className={`font-medium ${env.is_https ? 'text-green-600 dark:text-green-400' : 'text-red-600 dark:text-red-400'}`}>
-                    {env.is_https ? __('Sí', 'http-headers-advanced') : __('No', 'http-headers-advanced')}
+                    {env.is_https ? __('Sí', 'jeelsh-http-headers') : __('No', 'jeelsh-http-headers')}
                   </span>
                 </div>
                 <div className="flex justify-between">
-                  <span className="text-muted-foreground">{__('Servidor', 'http-headers-advanced')}</span>
+                  <span className="text-muted-foreground">{__('Servidor', 'jeelsh-http-headers')}</span>
                   <span className="font-medium">{env.server_software}</span>
                 </div>
                 <div className="flex justify-between">
@@ -123,12 +123,12 @@ export default function Dashboard({ assetBaseUrl, isDark, onTabChange }) {
               <CardHeader>
                 <div className="flex items-center gap-2">
                   <FileCode2 className="h-5 w-5 text-muted-foreground" />
-                  <CardTitle className="text-base">{__('Cabeceras activas', 'http-headers-advanced')}</CardTitle>
+                  <CardTitle className="text-base">{__('Cabeceras activas', 'jeelsh-http-headers')}</CardTitle>
                 </div>
               </CardHeader>
               <CardContent>
                 {headers.length === 0 ? (
-                  <p className="text-sm text-muted-foreground">{__('No hay cabeceras configuradas.', 'http-headers-advanced')}</p>
+                  <p className="text-sm text-muted-foreground">{__('No hay cabeceras configuradas.', 'jeelsh-http-headers')}</p>
                 ) : (
                   <ul className="space-y-1.5">
                     {headers.map((h) => (
@@ -146,17 +146,17 @@ export default function Dashboard({ assetBaseUrl, isDark, onTabChange }) {
           {/* Quick actions */}
           <Card>
             <CardContent className="pt-6">
-              <h3 className="text-lg font-semibold mb-2">{__('Acciones rápidas', 'http-headers-advanced')}</h3>
+              <h3 className="text-lg font-semibold mb-2">{__('Acciones rápidas', 'jeelsh-http-headers')}</h3>
               <p className="text-muted-foreground text-sm mb-4">
-                {__('Configura las cabeceras de seguridad HTTP de tu sitio desde el panel de Settings.', 'http-headers-advanced')}
+                {__('Configura las cabeceras de seguridad HTTP de tu sitio desde el panel de Settings.', 'jeelsh-http-headers')}
               </p>
               <div className="flex gap-3">
                 <Button onClick={() => onTabChange?.("settings")}>
                   <Settings className="h-4 w-4 mr-2" />
-                  {__('Ir a Settings', 'http-headers-advanced')}
+                  {__('Ir a Settings', 'jeelsh-http-headers')}
                 </Button>
                 <Button variant="outline" onClick={() => onTabChange?.("diagnostics")}>
-                  {__('Diagnósticos', 'http-headers-advanced')}
+                  {__('Diagnósticos', 'jeelsh-http-headers')}
                 </Button>
               </div>
             </CardContent>

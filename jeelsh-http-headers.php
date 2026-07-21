@@ -9,7 +9,7 @@ namespace JEELSHHA;
  * Author URI:        https://github.com/jeelsh
  * License:           GPLv2 or later
  * License URI:       https://www.gnu.org/licenses/gpl-2.0.html
- * Text Domain:       http-headers-advanced
+ * Text Domain:       jeelsh-http-headers
  * Domain Path:       /languages
  * Requires at least: 5.0
  * Tested up to:      7.0
@@ -21,8 +21,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 add_filter('plugin_action_links_' . plugin_basename(__FILE__), function ($links) {
-    $settings_url = admin_url('options-general.php?page=http-headers-advanced');
-    $settings_link = '<a href="' . esc_url($settings_url) . '">' . esc_html__('Settings', 'http-headers-advanced') . '</a>';
+    $settings_url = admin_url('options-general.php?page=jeelsh-http-headers');
+    $settings_link = '<a href="' . esc_url($settings_url) . '">' . esc_html__('Settings', 'jeelsh-http-headers') . '</a>';
 
     array_unshift($links, $settings_link);
 
