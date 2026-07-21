@@ -235,8 +235,10 @@ class React
             false
         );
         
+        $viteServerUrl = wp_json_encode($viteServer . '/@react-refresh', JSON_UNESCAPED_SLASHES);
+
         $refreshScript = "
-            import { injectIntoGlobalHook } from '{$viteServer}/@react-refresh';
+            import { injectIntoGlobalHook } from {$viteServerUrl};
             injectIntoGlobalHook(window);
             window.\$RefreshReg$ = () => {};
             window.\$RefreshSig$ = () => (type) => type;
