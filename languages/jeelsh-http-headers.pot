@@ -1,5 +1,5 @@
 # Copyright (C) 2026 Jeelsh
-# This file is distributed under the GPL2+.
+# This file is distributed under the GPLv2 or later.
 msgid ""
 msgstr ""
 "Project-Id-Version: HTTP Headers Advanced 1.0.0\n"
@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-07-18T21:12:37+02:00\n"
+"POT-Creation-Date: 2026-07-22T02:07:59+02:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: jeelsh-http-headers\n"
@@ -27,7 +27,7 @@ msgstr ""
 
 #. Description of the plugin
 #: jeelsh-http-headers.php
-msgid "Advanced HTTP headers management for WordPress."
+msgid "Configure and manage HTTP security headers, including CSP, HSTS, Referrer-Policy, X-Frame-Options, and Permissions-Policy, from WordPress."
 msgstr ""
 
 #. Author of the plugin
@@ -40,29 +40,9 @@ msgstr ""
 msgid "https://github.com/jeelsh"
 msgstr ""
 
-#: resources/views/settings.php:14
-#: src/Controllers/SettingsController.php:92
-msgid "Settings saved successfully."
-msgstr ""
-
-#: resources/views/settings.php:23
-msgid "Enable advanced headers"
-msgstr ""
-
-#: resources/views/settings.php:27
-msgid "Activate HTTP Headers Advanced management"
-msgstr ""
-
-#: resources/views/settings.php:33
-msgid "Custom header"
-msgstr ""
-
-#: resources/views/settings.php:37
-msgid "Add a custom HTTP header value. Not used if empty."
-msgstr ""
-
-#: resources/views/settings.php:42
-msgid "Save Changes"
+#: jeelsh-http-headers.php:25
+#: resources/js/components/layout/LeftSidebar.jsx:8
+msgid "Settings"
 msgstr ""
 
 #: src/Controllers/SettingsController.php:77
@@ -70,7 +50,12 @@ msgstr ""
 msgid "No data provided."
 msgstr ""
 
+#: src/Controllers/SettingsController.php:92
+msgid "Settings saved successfully."
+msgstr ""
+
 #: src/Controllers/SettingsController.php:103
+#: src/Security.php:18
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
 
@@ -90,27 +75,140 @@ msgstr ""
 msgid "Settings reset to defaults."
 msgstr ""
 
-#: src/Services/HeaderValidator.php:182
-#, php-format
-msgid "%s: %s"
+#: src/Install.php:275
+msgid "Antonella Framework installation encountered errors. Check error logs for details."
 msgstr ""
 
-#: src/Services/HeaderValidator.php:212
+#. translators: %s is the singular name of the post type
+#: src/PostTypes.php:57
+#, php-format
+msgid "See %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#: src/PostTypes.php:59
+#: src/PostTypes.php:61
+#, php-format
+msgid "Add %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:63
+#: src/PostTypes.php:177
+#, php-format
+msgid "Edit %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:65
+#: src/PostTypes.php:181
+#, php-format
+msgid "Update %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:67
+#: src/PostTypes.php:169
+#, php-format
+msgid "Search %s"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#: src/PostTypes.php:69
+#, php-format
+msgid "%s not found"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#: src/PostTypes.php:71
+#, php-format
+msgid "%s not found in trash"
+msgstr ""
+
+#. translators: %s is the singular name of the post type
+#: src/PostTypes.php:96
+#, php-format
+msgid "Info about %s"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:171
+#, php-format
+msgid "All %s"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:173
+#, php-format
+msgid "Parent %s"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:175
+#, php-format
+msgid "Parent %s:"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:179
+#, php-format
+msgid "View %s"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:183
+#, php-format
+msgid "Add new %s"
+msgstr ""
+
+#. translators: %s is the singular name of the taxonomy
+#: src/PostTypes.php:185
+#, php-format
+msgid "New %s"
+msgstr ""
+
+#. translators: %s is the plural name of the taxonomy
+#: src/PostTypes.php:188
+#, php-format
+msgid "Popular %s"
+msgstr ""
+
+#: src/Request.php:42
+msgid "Security check failed"
+msgstr ""
+
+#: src/Security.php:57
+msgid "Security check failed. Please try again."
+msgstr ""
+
+#. translators: 1: CSP field name, 2: error message
+#: src/Services/HeaderValidator.php:184
+#, php-format
+msgid "%1$s: %2$s"
+msgstr ""
+
+#: src/Services/HeaderValidator.php:215
 msgid "Unmatched quotes in CSP token."
 msgstr ""
 
-#: src/Services/HeaderValidator.php:233
-#: src/Services/HeaderValidator.php:239
+#. translators: %s: token value
+#: src/Services/HeaderValidator.php:240
+#: src/Services/HeaderValidator.php:253
 #, php-format
 msgid "Invalid CSP source expression: %s"
 msgstr ""
 
-#: src/Services/HeaderValidator.php:293
+#. translators: %s: field name
+#: src/Services/HeaderValidator.php:313
 #, php-format
 msgid "%s has unmatched quotes."
 msgstr ""
 
-#: src/Services/HeaderValidator.php:303
+#. translators: %s: field name
+#: src/Services/HeaderValidator.php:329
 #, php-format
 msgid "%s must be a valid https URL."
 msgstr ""
@@ -130,10 +228,6 @@ msgstr ""
 #: resources/js/components/layout/LeftSidebar.jsx:7
 #: resources/js/Pages/Dashboard.jsx:44
 msgid "Dashboard"
-msgstr ""
-
-#: resources/js/components/layout/LeftSidebar.jsx:8
-msgid "Settings"
 msgstr ""
 
 #: resources/js/components/layout/LeftSidebar.jsx:9
