@@ -11,9 +11,8 @@ class Antonella
         '.gitmodules',
         '.gitattributes',
         '.travis.yml',
-        'composer.json',
+        'components.json',
         'composer.lock',
-        'package.json',
         'package-lock.json',
         'vite.config.js',
         'antonella',
@@ -337,6 +336,25 @@ class Antonella
         $this->showSuccess("Plugin packed successfully: $zipName");
     }
 
+    private function isFileExcluded($relativePath)
+    {
+        $normalizedPath = ltrim(str_replace(DIRECTORY_SEPARATOR, '/', $relativePath), '/');
+
+        foreach ($this->files_to_exclude as $excludedFile) {
+            $normalizedExcludedFile = ltrim(str_replace('\\', '/', $excludedFile), '/');
+
+            if (strpos($normalizedExcludedFile, '/') !== false) {
+                if ($normalizedPath === $normalizedExcludedFile) {
+                    return true;
+                }
+            } elseif (basename($normalizedPath) === $normalizedExcludedFile) {
+                return true;
+            }
+        }
+
+        return false;
+    }
+
     /**
      * Add files recursively (Windows method)
      */
@@ -359,7 +377,7 @@ class Antonella
 
             $dir = dir($currentDir);
             while (false !== ($node = $dir->read())) {
-                if ($node === '.' || $node === '..' || in_array($node, $this->files_to_exclude)) {
+                if ($node === '.' || $node === '..') {
                     continue;
                 }
 
@@ -368,6 +386,10 @@ class Antonella
 
                 // Normalize path separators for comparison
                 $relativePath = str_replace(DIRECTORY_SEPARATOR, '/', $relativePath);
+
+                if ($this->isFileExcluded($relativePath)) {
+                    continue;
+                }
 
                 // Check if this path should be excluded based on relative path
                 $shouldExclude = false;
@@ -423,9 +445,14 @@ class Antonella
         );
 
         foreach ($files as $name => $file) {
-            if (!$file->isDir() && !in_array($file->getFilename(), $this->files_to_exclude)) {
+            if (!$file->isDir()) {
                 $filePath = $file->getRealPath();
                 $relativePath = substr($filePath, strlen($dirName) + 1);
+
+                if ($this->isFileExcluded($relativePath)) {
+                    continue;
+                }
+
                 $zip->addFile($filePath, $relativePath);
             }
         }
